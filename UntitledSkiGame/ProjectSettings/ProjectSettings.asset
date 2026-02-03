@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 3cafaf75010784248b8dbba69c70a9c9
+  productGUID: 38b9707cbd0a06c4aab66ba5619c44c2
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Untitled Ski Game
+  productName: UntitledSkiGame
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -846,14 +846,14 @@ PlayerSettings:
   editorAssembliesCompatibilityLevel: 1
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: Untitled Ski Game
+  metroPackageName: UntitledSkiGame
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Untitled Ski Game
+  metroApplicationDescription: UntitledSkiGame
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 0
@@ -924,10 +924,10 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: 15c3dc7c-2f77-4df1-970d-2c8da5283706
+  cloudProjectId: 66d81cb7-0cb3-4108-9385-8c5216766b18
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Untitled Ski Game
+  projectName: UntitledSkiGame
   organizationId: king_korby
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

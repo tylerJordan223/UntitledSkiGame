@@ -1,3 +1,0 @@
-*.shader linguist-language=ShaderLab
-*.cginc linguist-language=ShaderLab
-*.compute linguist-language=ShaderLab
