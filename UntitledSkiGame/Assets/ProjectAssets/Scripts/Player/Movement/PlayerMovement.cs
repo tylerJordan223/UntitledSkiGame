@@ -148,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
             //apply force proportional to the gap
             if(gap > 0.01f)
             {
-                float force = gap * 100f;
+                float force = gap * 1000f;
                 rb.AddForce(Vector3.down * force, ForceMode.Force);
             }
 
@@ -214,10 +214,10 @@ public class PlayerMovement : MonoBehaviour
 
                 return 1 - slowdownFactor;
             }
-            //if downhill then don't change
+            //if downhill then speed up slightly
             else if (movingUphill < -0.1f)
             {
-                return 1f;
+                return 1 + Mathf.Clamp(slopeAngle-15, 0f, 45f) / 45f;
             }
         }
         return 1f; //no modification by default
