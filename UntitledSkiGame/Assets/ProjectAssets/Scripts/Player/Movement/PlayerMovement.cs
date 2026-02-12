@@ -37,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Terrain Sticking:")]
     public float maxGroundDistance = 3f;
     public CapsuleCollider playerCollider;
+    private float groundNormal = 180f; //flat ground at default
 
     public Transform orientation;
 
@@ -108,8 +109,11 @@ public class PlayerMovement : MonoBehaviour
         vertical_input = movement.y;
 
         //adjust for orientation
-        Vector3 adjusted_movement = orientation.forward * vertical_input + orientation.right * horizontal_input;
-        adjusted_movement = adjusted_movement.normalized * speed;
+        moveDirection = orientation.forward * vertical_input + orientation.right * horizontal_input;
+        Vector3 adjusted_movement = moveDirection.normalized * speed;
+
+        //adjust for slope
+        adjusted_movement *= SlopeMultiplier();
 
         //apply the movement as velocity
         Vector3 newVelocity = adjusted_movement;
@@ -156,8 +160,8 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = v;
             }
 
-            //determine on if the player should be slowed down based on the angle
-            Debug.Log(Vector3.Angle(hit.normal, Vector3.down));
+            //save the normal to be used for calculating the ground
+            groundNormal = Vector3.Angle(hit.normal, Vector3.down);
         }
     }
 
@@ -177,21 +181,45 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void OnDrawGizmos()
+    //function to calculate the slowdown multiplier
+    private float SlopeMultiplier()
     {
-        if (!Application.isPlaying || playerCollider == null)
-            return;
+        //only do if on the ground
+        if (!grounded) return 1f;
 
-        // Draw ground check ray
-        Gizmos.color = grounded ? Color.green : Color.red;
-        float checkDistance = playerCollider.height / 2f + 0.2f;
-        Gizmos.DrawLine(transform.position, transform.position + Vector3.down * checkDistance);
+        //get the slope angle between 0 and 90 (flat to wall)
+        float slopeAngle = 180f - groundNormal;
 
-        // Draw predictive stick ray
-        float rayStartHeight = playerCollider.height / 2f;
-        Vector3 rayStart = transform.position - new Vector3(0, rayStartHeight - 0.1f, 0);
+        //if its too flat then don't even worry about it
+        if (slopeAngle < 15f) return 1f;
 
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawLine(rayStart, rayStart + Vector3.down * maxGroundDistance);
+        //determine if uphill/downhill
+        Vector3 startOfRay = transform.position - new Vector3(0f, (playerCollider.height / 2f) - 1f, 0f);
+
+        RaycastHit hit;
+        if(Physics.Raycast(startOfRay, Vector3.down, out hit, maxGroundDistance, groundMask))
+        {
+            //this calculates the up vector of the slope's plane using its normal
+            Vector3 slopeUp = Vector3.ProjectOnPlane(Vector3.up, hit.normal).normalized;
+
+            //uses the dot product to get the angle between the move direction and up of the slope, which helps you know which way the player is facing
+            //negative = downhill and positive = uphill
+            float movingUphill = Vector3.Dot(moveDirection.normalized, slopeUp);
+
+            //if its uphill (positive dot product)
+            if (movingUphill > 0.1f)
+            {
+                //apply slowdown
+                float slowdownFactor = Mathf.Clamp(slopeAngle-15, 0f, 45f) / 45f;
+
+                return 1 - slowdownFactor;
+            }
+            //if downhill then don't change
+            else if (movingUphill < -0.1f)
+            {
+                return 1f;
+            }
+        }
+        return 1f; //no modification by default
     }
 }

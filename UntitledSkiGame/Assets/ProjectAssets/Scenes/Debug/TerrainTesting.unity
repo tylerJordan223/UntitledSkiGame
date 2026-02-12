@@ -128,12 +128,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4150615982785232777, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+      propertyPath: speed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4150615982785232777, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: playerCollider
       value: 
       objectReference: {fileID: 1354244477}
     - target: {fileID: 4150615982785232777, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: stickMinDistance
       value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4150615982785232777, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+      propertyPath: maxGroundDistance
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6746261289539769997, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_Name
