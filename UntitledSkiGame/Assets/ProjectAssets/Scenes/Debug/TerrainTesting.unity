@@ -221,16 +221,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03061b5044dc95d4e8c2b9587242692b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkiMovement
-  speed: 7
+  speed: 15
   ground_drag: 5
+  slopeAcceleration: 0
+  orientation: {fileID: 235135660}
   height: 2
   groundMask:
     serializedVersion: 2
     m_Bits: 8
   grounded: 1
-  maxGroundDistance: 5
+  maxGroundDistance: 0.5
+  maxSlopeAngle: 45
   playerCollider: {fileID: 1354244477}
-  orientation: {fileID: 235135660}
 --- !u!1001 &876884434
 PrefabInstance:
   m_ObjectHideFlags: 0
