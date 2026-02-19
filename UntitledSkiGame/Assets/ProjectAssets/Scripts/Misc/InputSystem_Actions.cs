@@ -1079,6 +1079,183 @@ namespace Global_Input
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Unmounted"",
+            ""id"": ""fb8f89f9-8729-4f88-80b9-5d6c5a663c50"",
+            ""actions"": [
+                {
+                    ""name"": ""Move"",
+                    ""type"": ""Value"",
+                    ""id"": ""eb5cd365-f54d-474a-903e-6b75ac8b378f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""f393cd16-8ef2-4969-8b3d-8fc9c670acc8"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""de3c17fc-7c6d-4923-9c53-beefecf3c530"",
+                    ""path"": ""Dpad"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""a81784ed-8557-4099-a774-a6d0eedae648"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""09bc46ad-e9a1-41d7-be28-b4cf647d2a06"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""fd063219-24c7-4106-9249-778113544a2b"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""119d428f-5c02-4d1c-879f-ddd498bcc6d1"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6b4f8263-cb94-4bc2-baa0-c9f60c57f413"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""3123a1e8-1685-4fd8-82e7-37e8a033e8be"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""66cc46d3-03f7-41ff-9faa-ff634d0a8975"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""a0165eb8-52ed-4220-8d4e-1998899b2bff"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b831b2dc-c379-4efc-9261-1ba0c2f398fc"",
+                    ""path"": ""<XRController>/{Primary2DAxis}"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""XR"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfa9c74b-97b3-4820-8752-204a43b4a852"",
+                    ""path"": ""<Joystick>/stick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Joystick"",
+                    ""action"": ""Move"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Mounted"",
+            ""id"": ""d189d2e2-6a27-44de-a248-0b12188d8133"",
+            ""actions"": [
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""51fcc4f0-73e1-4bc8-af39-01ab73b2c0c2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""6b4f27d9-8816-40b8-9e18-86b52e7ef18d"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -1167,12 +1344,20 @@ namespace Global_Input
             m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
             m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+            // Unmounted
+            m_Unmounted = asset.FindActionMap("Unmounted", throwIfNotFound: true);
+            m_Unmounted_Move = m_Unmounted.FindAction("Move", throwIfNotFound: true);
+            // Mounted
+            m_Mounted = asset.FindActionMap("Mounted", throwIfNotFound: true);
+            m_Mounted_Newaction = m_Mounted.FindAction("New action", throwIfNotFound: true);
         }
 
         ~@GlobalInput()
         {
             UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, GlobalInput.Player.Disable() has not been called.");
             UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, GlobalInput.UI.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Unmounted.enabled, "This will cause a leak and performance issues, GlobalInput.Unmounted.Disable() has not been called.");
+            UnityEngine.Debug.Assert(!m_Mounted.enabled, "This will cause a leak and performance issues, GlobalInput.Mounted.Disable() has not been called.");
         }
 
         /// <summary>
@@ -1623,6 +1808,198 @@ namespace Global_Input
         /// Provides a new <see cref="UIActions" /> instance referencing this action map.
         /// </summary>
         public UIActions @UI => new UIActions(this);
+
+        // Unmounted
+        private readonly InputActionMap m_Unmounted;
+        private List<IUnmountedActions> m_UnmountedActionsCallbackInterfaces = new List<IUnmountedActions>();
+        private readonly InputAction m_Unmounted_Move;
+        /// <summary>
+        /// Provides access to input actions defined in input action map "Unmounted".
+        /// </summary>
+        public struct UnmountedActions
+        {
+            private @GlobalInput m_Wrapper;
+
+            /// <summary>
+            /// Construct a new instance of the input action map wrapper class.
+            /// </summary>
+            public UnmountedActions(@GlobalInput wrapper) { m_Wrapper = wrapper; }
+            /// <summary>
+            /// Provides access to the underlying input action "Unmounted/Move".
+            /// </summary>
+            public InputAction @Move => m_Wrapper.m_Unmounted_Move;
+            /// <summary>
+            /// Provides access to the underlying input action map instance.
+            /// </summary>
+            public InputActionMap Get() { return m_Wrapper.m_Unmounted; }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+            public void Enable() { Get().Enable(); }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+            public void Disable() { Get().Disable(); }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+            public bool enabled => Get().enabled;
+            /// <summary>
+            /// Implicitly converts an <see ref="UnmountedActions" /> to an <see ref="InputActionMap" /> instance.
+            /// </summary>
+            public static implicit operator InputActionMap(UnmountedActions set) { return set.Get(); }
+            /// <summary>
+            /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+            /// </summary>
+            /// <param name="instance">Callback instance.</param>
+            /// <remarks>
+            /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+            /// </remarks>
+            /// <seealso cref="UnmountedActions" />
+            public void AddCallbacks(IUnmountedActions instance)
+            {
+                if (instance == null || m_Wrapper.m_UnmountedActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_UnmountedActionsCallbackInterfaces.Add(instance);
+                @Move.started += instance.OnMove;
+                @Move.performed += instance.OnMove;
+                @Move.canceled += instance.OnMove;
+            }
+
+            /// <summary>
+            /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+            /// </summary>
+            /// <remarks>
+            /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+            /// </remarks>
+            /// <seealso cref="UnmountedActions" />
+            private void UnregisterCallbacks(IUnmountedActions instance)
+            {
+                @Move.started -= instance.OnMove;
+                @Move.performed -= instance.OnMove;
+                @Move.canceled -= instance.OnMove;
+            }
+
+            /// <summary>
+            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="UnmountedActions.UnregisterCallbacks(IUnmountedActions)" />.
+            /// </summary>
+            /// <seealso cref="UnmountedActions.UnregisterCallbacks(IUnmountedActions)" />
+            public void RemoveCallbacks(IUnmountedActions instance)
+            {
+                if (m_Wrapper.m_UnmountedActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            /// <summary>
+            /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+            /// </summary>
+            /// <remarks>
+            /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+            /// </remarks>
+            /// <seealso cref="UnmountedActions.AddCallbacks(IUnmountedActions)" />
+            /// <seealso cref="UnmountedActions.RemoveCallbacks(IUnmountedActions)" />
+            /// <seealso cref="UnmountedActions.UnregisterCallbacks(IUnmountedActions)" />
+            public void SetCallbacks(IUnmountedActions instance)
+            {
+                foreach (var item in m_Wrapper.m_UnmountedActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_UnmountedActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        /// <summary>
+        /// Provides a new <see cref="UnmountedActions" /> instance referencing this action map.
+        /// </summary>
+        public UnmountedActions @Unmounted => new UnmountedActions(this);
+
+        // Mounted
+        private readonly InputActionMap m_Mounted;
+        private List<IMountedActions> m_MountedActionsCallbackInterfaces = new List<IMountedActions>();
+        private readonly InputAction m_Mounted_Newaction;
+        /// <summary>
+        /// Provides access to input actions defined in input action map "Mounted".
+        /// </summary>
+        public struct MountedActions
+        {
+            private @GlobalInput m_Wrapper;
+
+            /// <summary>
+            /// Construct a new instance of the input action map wrapper class.
+            /// </summary>
+            public MountedActions(@GlobalInput wrapper) { m_Wrapper = wrapper; }
+            /// <summary>
+            /// Provides access to the underlying input action "Mounted/Newaction".
+            /// </summary>
+            public InputAction @Newaction => m_Wrapper.m_Mounted_Newaction;
+            /// <summary>
+            /// Provides access to the underlying input action map instance.
+            /// </summary>
+            public InputActionMap Get() { return m_Wrapper.m_Mounted; }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+            public void Enable() { Get().Enable(); }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+            public void Disable() { Get().Disable(); }
+            /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+            public bool enabled => Get().enabled;
+            /// <summary>
+            /// Implicitly converts an <see ref="MountedActions" /> to an <see ref="InputActionMap" /> instance.
+            /// </summary>
+            public static implicit operator InputActionMap(MountedActions set) { return set.Get(); }
+            /// <summary>
+            /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+            /// </summary>
+            /// <param name="instance">Callback instance.</param>
+            /// <remarks>
+            /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+            /// </remarks>
+            /// <seealso cref="MountedActions" />
+            public void AddCallbacks(IMountedActions instance)
+            {
+                if (instance == null || m_Wrapper.m_MountedActionsCallbackInterfaces.Contains(instance)) return;
+                m_Wrapper.m_MountedActionsCallbackInterfaces.Add(instance);
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+            }
+
+            /// <summary>
+            /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+            /// </summary>
+            /// <remarks>
+            /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+            /// </remarks>
+            /// <seealso cref="MountedActions" />
+            private void UnregisterCallbacks(IMountedActions instance)
+            {
+                @Newaction.started -= instance.OnNewaction;
+                @Newaction.performed -= instance.OnNewaction;
+                @Newaction.canceled -= instance.OnNewaction;
+            }
+
+            /// <summary>
+            /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="MountedActions.UnregisterCallbacks(IMountedActions)" />.
+            /// </summary>
+            /// <seealso cref="MountedActions.UnregisterCallbacks(IMountedActions)" />
+            public void RemoveCallbacks(IMountedActions instance)
+            {
+                if (m_Wrapper.m_MountedActionsCallbackInterfaces.Remove(instance))
+                    UnregisterCallbacks(instance);
+            }
+
+            /// <summary>
+            /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+            /// </summary>
+            /// <remarks>
+            /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+            /// </remarks>
+            /// <seealso cref="MountedActions.AddCallbacks(IMountedActions)" />
+            /// <seealso cref="MountedActions.RemoveCallbacks(IMountedActions)" />
+            /// <seealso cref="MountedActions.UnregisterCallbacks(IMountedActions)" />
+            public void SetCallbacks(IMountedActions instance)
+            {
+                foreach (var item in m_Wrapper.m_MountedActionsCallbackInterfaces)
+                    UnregisterCallbacks(item);
+                m_Wrapper.m_MountedActionsCallbackInterfaces.Clear();
+                AddCallbacks(instance);
+            }
+        }
+        /// <summary>
+        /// Provides a new <see cref="MountedActions" /> instance referencing this action map.
+        /// </summary>
+        public MountedActions @Mounted => new MountedActions(this);
         private int m_KeyboardMouseSchemeIndex = -1;
         /// <summary>
         /// Provides access to the input control scheme.
@@ -1836,6 +2213,36 @@ namespace Global_Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+        }
+        /// <summary>
+        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Unmounted" which allows adding and removing callbacks.
+        /// </summary>
+        /// <seealso cref="UnmountedActions.AddCallbacks(IUnmountedActions)" />
+        /// <seealso cref="UnmountedActions.RemoveCallbacks(IUnmountedActions)" />
+        public interface IUnmountedActions
+        {
+            /// <summary>
+            /// Method invoked when associated input action "Move" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnMove(InputAction.CallbackContext context);
+        }
+        /// <summary>
+        /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Mounted" which allows adding and removing callbacks.
+        /// </summary>
+        /// <seealso cref="MountedActions.AddCallbacks(IMountedActions)" />
+        /// <seealso cref="MountedActions.RemoveCallbacks(IMountedActions)" />
+        public interface IMountedActions
+        {
+            /// <summary>
+            /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnNewaction(InputAction.CallbackContext context);
         }
     }
 }

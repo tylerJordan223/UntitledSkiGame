@@ -24,7 +24,7 @@ public class FreeMoveCamera : MonoBehaviour
     private void OnEnable()
     {
         input = new GlobalInput();
-        input.Player.Move.Enable();
+        input.Unmounted.Enable();
     }
 
     private void Update()
@@ -36,7 +36,7 @@ public class FreeMoveCamera : MonoBehaviour
         orientation.forward = dir.normalized;
 
         //getting the movement from the player
-        Vector2 movement = input.Player.Move.ReadValue<Vector2>();
+        Vector2 movement = input.Unmounted.Move.ReadValue<Vector2>();
         //**NOTE: The movement base input reads up/down or forward/backward as its first value (x) and left/right as its second value (y)
         float horizontal_movement = -movement.y;
         float vertical_movement = movement.x;

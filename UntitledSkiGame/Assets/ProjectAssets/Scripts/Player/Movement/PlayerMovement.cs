@@ -69,13 +69,13 @@ public class PlayerMovement : MonoBehaviour
     {
         //enable input
         input = new GlobalInput();
-        input.Player.Move.Enable();
+        input.Unmounted.Enable();
     }
 
     private void OnDisable()
     {
         //disable input
-        input.Player.Move.Disable();
+        input.Unmounted.Disable();
     }
 
     private void FixedUpdate()
@@ -102,7 +102,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovePlayer()
     {
         //get the player input
-        Vector2 movement = input.Player.Move.ReadValue<Vector2>();
+        Vector2 movement = input.Unmounted.Move.ReadValue<Vector2>();
 
         //assign movement
         horizontal_input = movement.x;
