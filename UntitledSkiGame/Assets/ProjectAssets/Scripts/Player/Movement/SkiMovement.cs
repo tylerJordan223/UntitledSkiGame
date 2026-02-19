@@ -1,5 +1,6 @@
 using Global_Input;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SkiMovement : MonoBehaviour
 {
@@ -26,9 +27,10 @@ public class SkiMovement : MonoBehaviour
     }
 
     [Header("Movement:")]
-    public float speed;
+    public float max_speed;
     public float ground_drag;
     public float slopeAcceleration;
+    public float playerAcceleration = 0;
     
     public Transform orientation;
 
@@ -65,6 +67,7 @@ public class SkiMovement : MonoBehaviour
     {
         //enable input
         input = new GlobalInput();
+        input.Mounted.Push.performed += Push;
         input.Mounted.Enable();
     }
 
@@ -84,6 +87,8 @@ public class SkiMovement : MonoBehaviour
         //always move/apply the gravity
         MovePlayer();
         ApplyGravity();
+
+        Debug.Log(playerAcceleration);
     }
 
     private void Update()
@@ -102,24 +107,17 @@ public class SkiMovement : MonoBehaviour
     //function used to move the player
     private void MovePlayer()
     {
-        //get the player input
-        Vector2 movement = input.Player.Move.ReadValue<Vector2>();
-
-        //assign movement
-        horizontal_input = movement.x;
-        vertical_input = movement.y;
-
         //calculating the initial movement direction
-        Vector3 inputDirection = orientation.forward * vertical_input + orientation.right * horizontal_input;
+        Vector3 inputDirection = transform.right;
 
         //important case for actually doing this
-        if(grounded && inputDirection.magnitude > 0.1f)
+        if(grounded && inputDirection.magnitude > 0.1f && playerAcceleration > 0f)
         {
             //project that movement onto the slope
             moveDirection = Vector3.ProjectOnPlane(inputDirection, groundNormal);
 
             //apply speed
-            Vector3 adjusted_movement = moveDirection * speed;
+            Vector3 adjusted_movement = moveDirection * max_speed * playerAcceleration;
 
             //transition to the goal velocity
             Vector3 current = rb.linearVelocity;
@@ -127,7 +125,13 @@ public class SkiMovement : MonoBehaviour
             change.y = 0; //don't affect vertical velocity
 
             //apply acceleration
+            Debug.Log(change);
             rb.AddForce(change * 10f, ForceMode.Acceleration);
+        }
+
+        if(playerAcceleration > 0f)
+        {
+            playerAcceleration -= 0.1f * Time.deltaTime;
         }
     }
 
@@ -190,6 +194,12 @@ public class SkiMovement : MonoBehaviour
             grounded = false;
             groundNormal = Vector3.up;
         }
+    }
+
+    private void Push(InputAction.CallbackContext context)
+    {
+        Debug.Log("pushed");
+        playerAcceleration = 1.0f;
     }
 
     //COLLISION//
