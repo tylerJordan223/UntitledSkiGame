@@ -27,6 +27,11 @@ public class FreeMoveCamera : MonoBehaviour
         input.Unmounted.Enable();
     }
 
+    private void OnDisable()
+    {
+        input.Unmounted.Disable();
+    }
+
     private void Update()
     {
         //rotation the player's orientation//

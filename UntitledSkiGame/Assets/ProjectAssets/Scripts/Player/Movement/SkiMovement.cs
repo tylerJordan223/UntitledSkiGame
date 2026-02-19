@@ -65,13 +65,13 @@ public class SkiMovement : MonoBehaviour
     {
         //enable input
         input = new GlobalInput();
-        input.Player.Move.Enable();
+        input.Mounted.Enable();
     }
 
     private void OnDisable()
     {
         //disable input
-        input.Player.Move.Disable();
+        input.Mounted.Disable();
     }
 
     private void FixedUpdate()

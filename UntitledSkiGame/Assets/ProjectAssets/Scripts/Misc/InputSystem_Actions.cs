@@ -1234,26 +1234,68 @@ namespace Global_Input
             ""id"": ""d189d2e2-6a27-44de-a248-0b12188d8133"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Push"",
                     ""type"": ""Button"",
                     ""id"": ""51fcc4f0-73e1-4bc8-af39-01ab73b2c0c2"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Rotate"",
+                    ""type"": ""Value"",
+                    ""id"": ""6f1518e0-895e-4e4f-a4f4-9693e5b72952"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
                 {
                     ""name"": """",
                     ""id"": ""6b4f27d9-8816-40b8-9e18-86b52e7ef18d"",
-                    ""path"": """",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Push"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""a4947358-fb08-4d2f-bc4a-487498c7a14b"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""5253606a-1f17-4a49-94d2-66496948d11c"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""cd3975f7-3968-42f6-8428-e8ae57b46db9"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Rotate"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -1349,7 +1391,8 @@ namespace Global_Input
             m_Unmounted_Move = m_Unmounted.FindAction("Move", throwIfNotFound: true);
             // Mounted
             m_Mounted = asset.FindActionMap("Mounted", throwIfNotFound: true);
-            m_Mounted_Newaction = m_Mounted.FindAction("New action", throwIfNotFound: true);
+            m_Mounted_Push = m_Mounted.FindAction("Push", throwIfNotFound: true);
+            m_Mounted_Rotate = m_Mounted.FindAction("Rotate", throwIfNotFound: true);
         }
 
         ~@GlobalInput()
@@ -1908,7 +1951,8 @@ namespace Global_Input
         // Mounted
         private readonly InputActionMap m_Mounted;
         private List<IMountedActions> m_MountedActionsCallbackInterfaces = new List<IMountedActions>();
-        private readonly InputAction m_Mounted_Newaction;
+        private readonly InputAction m_Mounted_Push;
+        private readonly InputAction m_Mounted_Rotate;
         /// <summary>
         /// Provides access to input actions defined in input action map "Mounted".
         /// </summary>
@@ -1921,9 +1965,13 @@ namespace Global_Input
             /// </summary>
             public MountedActions(@GlobalInput wrapper) { m_Wrapper = wrapper; }
             /// <summary>
-            /// Provides access to the underlying input action "Mounted/Newaction".
+            /// Provides access to the underlying input action "Mounted/Push".
             /// </summary>
-            public InputAction @Newaction => m_Wrapper.m_Mounted_Newaction;
+            public InputAction @Push => m_Wrapper.m_Mounted_Push;
+            /// <summary>
+            /// Provides access to the underlying input action "Mounted/Rotate".
+            /// </summary>
+            public InputAction @Rotate => m_Wrapper.m_Mounted_Rotate;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -1950,9 +1998,12 @@ namespace Global_Input
             {
                 if (instance == null || m_Wrapper.m_MountedActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_MountedActionsCallbackInterfaces.Add(instance);
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Push.started += instance.OnPush;
+                @Push.performed += instance.OnPush;
+                @Push.canceled += instance.OnPush;
+                @Rotate.started += instance.OnRotate;
+                @Rotate.performed += instance.OnRotate;
+                @Rotate.canceled += instance.OnRotate;
             }
 
             /// <summary>
@@ -1964,9 +2015,12 @@ namespace Global_Input
             /// <seealso cref="MountedActions" />
             private void UnregisterCallbacks(IMountedActions instance)
             {
-                @Newaction.started -= instance.OnNewaction;
-                @Newaction.performed -= instance.OnNewaction;
-                @Newaction.canceled -= instance.OnNewaction;
+                @Push.started -= instance.OnPush;
+                @Push.performed -= instance.OnPush;
+                @Push.canceled -= instance.OnPush;
+                @Rotate.started -= instance.OnRotate;
+                @Rotate.performed -= instance.OnRotate;
+                @Rotate.canceled -= instance.OnRotate;
             }
 
             /// <summary>
@@ -2237,12 +2291,19 @@ namespace Global_Input
         public interface IMountedActions
         {
             /// <summary>
-            /// Method invoked when associated input action "New action" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// Method invoked when associated input action "Push" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
             /// </summary>
             /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-            void OnNewaction(InputAction.CallbackContext context);
+            void OnPush(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Rotate" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnRotate(InputAction.CallbackContext context);
         }
     }
 }
