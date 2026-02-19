@@ -69,6 +69,13 @@ public class SkiMovement : MonoBehaviour
         input = new GlobalInput();
         input.Mounted.Push.performed += Push;
         input.Mounted.Enable();
+
+        //remove player velocity
+        if(rb)
+        {
+            rb.linearVelocity = Vector3.zero;
+        }
+        playerAcceleration = 0f;
     }
 
     private void OnDisable()
@@ -108,7 +115,7 @@ public class SkiMovement : MonoBehaviour
     private void MovePlayer()
     {
         //calculating the initial movement direction
-        Vector3 inputDirection = transform.right;
+        Vector3 inputDirection = orientation.right;
 
         //important case for actually doing this
         if(grounded && inputDirection.magnitude > 0.1f && playerAcceleration > 0f)

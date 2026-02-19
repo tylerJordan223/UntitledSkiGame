@@ -256,13 +256,14 @@ GameObject:
   - component: {fileID: 5192957736824427145}
   - component: {fileID: 4429294199037209101}
   - component: {fileID: 948908345013697834}
+  - component: {fileID: 1636970307020011753}
   m_Layer: 0
   m_Name: SkiCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2183906008118550486
 Transform:
   m_ObjectHideFlags: 0
@@ -353,6 +354,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineHardLookAt
   LookAtOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &1636970307020011753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5688402016092236254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea3766ebc840856459e7c244f90c2a62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkiCamera
+  orientation: {fileID: 1054637279345006875}
+  player: {fileID: 8507831349861981955}
+  player_obj: {fileID: 1087728331783127546}
+  rb: {fileID: 7497919929512713473}
+  rotation_speed: 50
 --- !u!1 &6035163299059756839
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +499,7 @@ GameObject:
   - component: {fileID: 7497919929512713473}
   - component: {fileID: 4150615982785232777}
   - component: {fileID: 7973000057210073714}
+  - component: {fileID: 4050072961026693383}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -567,9 +586,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03061b5044dc95d4e8c2b9587242692b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkiMovement
-  speed: 15
+  max_speed: 20
   ground_drag: 5
   slopeAcceleration: 0
+  playerAcceleration: 0
   orientation: {fileID: 1054637279345006875}
   height: 2
   groundMask:
@@ -579,6 +599,25 @@ MonoBehaviour:
   maxGroundDistance: 0.5
   maxSlopeAngle: 45
   playerCollider: {fileID: 4801667155927134326}
+--- !u!114 &4050072961026693383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6746261289539769997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f55c539bf8962584bbc2c71211bd3e11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  ski_movement: {fileID: 7973000057210073714}
+  ski_camera: {fileID: 5688402016092236254}
+  skis: {fileID: 8777967946035368549}
+  walking_movement: {fileID: 4150615982785232777}
+  walking_camera: {fileID: 8282418987821655958}
+  orientation: {fileID: 1895817563380713440}
+  body: {fileID: 6035163299059756839}
 --- !u!1 &7266201479779528829
 GameObject:
   m_ObjectHideFlags: 0
@@ -966,7 +1005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1845164945129314718
 Transform:
   m_ObjectHideFlags: 0

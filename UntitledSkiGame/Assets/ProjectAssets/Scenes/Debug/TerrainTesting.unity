@@ -127,29 +127,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2183906008118550486, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.9460144
-      objectReference: {fileID: 0}
-    - target: {fileID: 4150615982785232777, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6746261289539769997, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 7973000057210073714, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7973000057210073714, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: max_speed
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8282418987821655958, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8507831349861981955, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_LocalPosition.x
@@ -194,26 +174,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5688402016092236254, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2052551661}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14f23b0276618244aaab766750fccb86, type: 3}
---- !u!4 &235135660 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1054637279345006875, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-  m_PrefabInstance: {fileID: 235135658}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &235135663 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 7497919929512713473, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-  m_PrefabInstance: {fileID: 235135658}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &235135664 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8507831349861981955, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-  m_PrefabInstance: {fileID: 235135658}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &876884434
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -654,11 +616,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1912172317 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1087728331783127546, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-  m_PrefabInstance: {fileID: 235135658}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1968513269
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,7 +677,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60.000004
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -746,8 +703,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968513269}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1337192, y: 0.69434804, z: -0.1337192, w: 0.69434804}
-  m_LocalPosition: {x: 492.76248, y: 4.0638804, z: 320.0866}
+  m_LocalRotation: {x: 0.14804377, y: 0.3245303, z: -0.05150605, w: 0.932797}
+  m_LocalPosition: {x: 495.36774, y: 3.291862, z: 317.1295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -829,28 +786,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1 &2052551655 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5688402016092236254, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-  m_PrefabInstance: {fileID: 235135658}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2052551661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2052551655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea3766ebc840856459e7c244f90c2a62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkiCamera
-  orientation: {fileID: 235135660}
-  player: {fileID: 235135664}
-  player_obj: {fileID: 1912172317}
-  rb: {fileID: 235135663}
-  rotation_speed: 50
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

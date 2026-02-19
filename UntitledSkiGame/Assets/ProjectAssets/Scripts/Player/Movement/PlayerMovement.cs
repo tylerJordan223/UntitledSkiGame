@@ -70,6 +70,12 @@ public class PlayerMovement : MonoBehaviour
         //enable input
         input = new GlobalInput();
         input.Unmounted.Enable();
+
+        //remove all velocity
+        if(rb)
+        {
+            rb.linearVelocity = Vector3.zero;
+        }
     }
 
     private void OnDisable()
