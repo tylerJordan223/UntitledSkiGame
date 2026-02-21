@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Controls;
 
+
 public class TrickDebugHUD : MonoBehaviour
 {
     [Header("Throw SkiMovement here xd")]
@@ -16,6 +17,8 @@ public class TrickDebugHUD : MonoBehaviour
     private string cachedActions = "";
     public float refreshRateHz = 10f;
     private float nextRefreshTime = 0f;
+    public AirTimeTracker airTimeTracker;
+    public TrickComboDetector comboDetector;
 
     private GlobalInput input;
 
@@ -62,37 +65,55 @@ public class TrickDebugHUD : MonoBehaviour
         }
     }
 
-    private void OnGUI()
+   private void OnGUI()
+{
+    if (!showHud) return;
+
+    float centerX = Screen.width * 0.5f;
+    float centerY = Screen.height * 0.15f;
+    float width = 1200f;
+    float lineH = fontSize + 10;
+
+    bool grounded = skiMovement != null && skiMovement.grounded;
+
+    // Refresh text only at fixed intervals
+    if (Time.unscaledTime >= nextRefreshTime)
     {
-        if (!showHud) return;
+        nextRefreshTime = Time.unscaledTime + (1f / Mathf.Max(1f, refreshRateHz));
 
-        float centerX = Screen.width * 0.5f;
-        float centerY = Screen.height * 0.15f;
-        float width = 1200f;
-        float lineH = fontSize + 10;
-
-        bool grounded = skiMovement != null && skiMovement.grounded;
-
-        // Refresh text only at fixed intervals 
-        if (Time.unscaledTime >= nextRefreshTime)
-        {
-            nextRefreshTime = Time.unscaledTime + (1f / Mathf.Max(1f, refreshRateHz));
-
-            cachedKeys = BuildKeyboardLine();
-            cachedActions = BuildActionsLine();
-        }
-
-        // 1) State line (colored)
-        string stateText = grounded ? "GROUNDED" : "IN AIR";
-        GUIStyle stateStyle = grounded ? centeredStyleGreen : centeredStyleRed;
-        GUI.Label(new Rect(centerX - width / 2f, centerY, width, lineH), stateText, stateStyle);
-
-        // 2) Keys line
-        GUI.Label(new Rect(centerX - width / 2f, centerY + lineH, width, lineH), cachedKeys, centeredStyle);
-
-        // 3) Actions line
-        GUI.Label(new Rect(centerX - width / 2f, centerY + 2 * lineH, width, lineH), cachedActions, centeredStyle);
+        cachedKeys = BuildKeyboardLine();
+        cachedActions = BuildActionsLine();
     }
+
+    // State line 
+    string stateText = grounded ? "GROUNDED" : "IN AIR";
+    GUIStyle stateStyle = grounded ? centeredStyleGreen : centeredStyleRed;
+    GUI.Label(new Rect(centerX - width / 2f, centerY, width, lineH), stateText, stateStyle);
+
+    // Air time 
+    string airText = "AIR: (no tracker)";
+    if (airTimeTracker != null)
+    {
+        if (!grounded)
+            airText = $"AIR: {airTimeTracker.currentAirTime:0.00}s";
+        else
+            airText = $"LAST AIR: {airTimeTracker.lastAirTime:0.00}s   BEST: {airTimeTracker.bestAirTime:0.00}s";
+    }
+    GUI.Label(new Rect(centerX - width / 2f, centerY + lineH, width, lineH), airText, centeredStyle);
+
+    // Keys line 
+    GUI.Label(new Rect(centerX - width / 2f, centerY + 2 * lineH, width, lineH), cachedKeys, centeredStyle);
+
+    //  Actions line
+    GUI.Label(new Rect(centerX - width / 2f, centerY + 3 * lineH, width, lineH), cachedActions, centeredStyle);
+
+    // Current trick line 
+    if (comboDetector != null && !string.IsNullOrEmpty(comboDetector.currentTrickName))
+    {
+        float midY = Screen.height * 0.5f;
+        GUI.Label(new Rect(centerX - width / 2f, midY, width, lineH), comboDetector.currentTrickName, centeredStyle);
+    }
+}
 
     private string BuildKeyboardLine()
     {
