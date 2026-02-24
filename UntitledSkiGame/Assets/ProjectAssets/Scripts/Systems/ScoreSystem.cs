@@ -5,7 +5,7 @@ public class ScoreSystem : MonoBehaviour
     // References (assign if you want; otherwise it will try to auto-find)
     public Rigidbody playerRb;
     public PlayerCollisionSensor collisionSensor;
-
+    public System.Action ChainBroken;
     // Some movement setups don’t produce a reliable RB velocity (eg: moving parent transform, CC, etc).
     // Using position delta so the scoring consistent no matter how movement is implemented.
     public bool usePositionDeltaForSpeed = true;
@@ -202,6 +202,7 @@ public class ScoreSystem : MonoBehaviour
 
     public void BreakChain()
     {
+
         // Hard reset of the chain on collision.
         chainScore = 0f;
         combo = 1f;
@@ -209,6 +210,8 @@ public class ScoreSystem : MonoBehaviour
 
         collidedRecently = true;
         collidedTimer = collidedCooldown;
+
+        ChainBroken?.Invoke();
     }
 
     public void BankChain()
