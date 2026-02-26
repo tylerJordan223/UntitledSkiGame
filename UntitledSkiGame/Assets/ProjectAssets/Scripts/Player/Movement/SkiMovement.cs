@@ -46,6 +46,7 @@ public class SkiMovement : MonoBehaviour
 
     //saved values for calculation
     private float slopeAngle = 180f; //flat ground at default
+    private int uphill;
     private Vector3 groundNormal; 
     private Rigidbody rb;
     
@@ -94,8 +95,6 @@ public class SkiMovement : MonoBehaviour
         //always move/apply the gravity
         MovePlayer();
         ApplyGravity();
-
-        Debug.Log(playerAcceleration);
     }
 
     private void Update()
@@ -109,6 +108,7 @@ public class SkiMovement : MonoBehaviour
         {
             rb.linearDamping = 0f;
         }
+
     }
 
     //function used to move the player
@@ -132,11 +132,25 @@ public class SkiMovement : MonoBehaviour
             change.y = 0; //don't affect vertical velocity
 
             //apply acceleration
-            Debug.Log(change);
             rb.AddForce(change * 10f, ForceMode.Acceleration);
         }
 
-        if(playerAcceleration > 0f)
+        //alter acceleration based on angle, can happen when 0 (on angled slope)
+        if(grounded && !input.Mounted.Brake.IsPressed() && playerAcceleration != 0)
+        {
+            //slop angle should be between 0 (flat ground) and 45 (max angle)
+            //add to the player acceleration based on angle multiplied by the slope
+            playerAcceleration -= uphill * ((slopeAngle / 45f) * 0.5f * Time.deltaTime);
+        }else if(grounded && input.Mounted.Brake.IsPressed())
+        {
+            //this is braking, happens instead of thet slope speed up or slow down
+            playerAcceleration -= 0.4f * Time.deltaTime;
+        }
+        //clamp to not go over or under acceleration
+        playerAcceleration = Mathf.Clamp(playerAcceleration, 0f, 1.0f);
+
+        //if flat ground slow down anyways if on flat ground
+        if (playerAcceleration > 0f && slopeAngle == 0)
         {
             playerAcceleration -= 0.1f * Time.deltaTime;
         }
@@ -194,6 +208,10 @@ public class SkiMovement : MonoBehaviour
                 grounded = false;
                 groundNormal = Vector3.up;
             }
+
+            //additionally find the uphill/downhill value
+            Vector3 slopeUp = Vector3.ProjectOnPlane(Vector3.up, hit.normal).normalized;
+            uphill = (int)(1 * Mathf.Sign(Vector3.Dot(moveDirection.normalized, slopeUp)));
         }
         else
         {
@@ -205,8 +223,11 @@ public class SkiMovement : MonoBehaviour
 
     private void Push(InputAction.CallbackContext context)
     {
-        Debug.Log("pushed");
-        playerAcceleration = 1.0f;
+        //only push if under a certain threshold
+        if(playerAcceleration < 0.7f)
+        {
+            playerAcceleration += 0.2f;
+        }
     }
 
     //COLLISION//
