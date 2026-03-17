@@ -501,14 +501,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3276683173320203504, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 3ba417dd27e82e54ba0aa27e833318e4, type: 2}
-    - target: {fileID: 4150615982785232777, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: anim
-      value: 
-      objectReference: {fileID: 1665091930}
     - target: {fileID: 6746261289539769997, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_Name
       value: Player
@@ -553,8 +545,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6317426715797676661, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1990,11 +1981,6 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
---- !u!95 &1665091930 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3276683173320203504, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-  m_PrefabInstance: {fileID: 235135658}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1739671699
 GameObject:
   m_ObjectHideFlags: 0
