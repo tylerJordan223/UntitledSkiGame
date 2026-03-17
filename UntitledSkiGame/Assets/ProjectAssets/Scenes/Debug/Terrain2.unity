@@ -501,29 +501,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 99098721475637470, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+      propertyPath: collisionSensor
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6746261289539769997, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6746261289539769997, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7650964995785349887, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.932797
-      objectReference: {fileID: 0}
-    - target: {fileID: 7650964995785349887, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0.14804386
-      objectReference: {fileID: 0}
-    - target: {fileID: 7650964995785349887, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.32453033
-      objectReference: {fileID: 0}
-    - target: {fileID: 7650964995785349887, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0.05150607
       objectReference: {fileID: 0}
     - target: {fileID: 8507831349861981955, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_LocalPosition.x
@@ -567,14 +551,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8507831349861981955, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 747388506}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 6746261289539769997, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1009637584}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14f23b0276618244aaab766750fccb86, type: 3}
 --- !u!1 &317618460
 GameObject:
@@ -992,77 +970,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0.8760108, g: 0.8157997, b: 0.8157997, a: 0.3137255}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
---- !u!1 &747388505
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 747388506}
-  - component: {fileID: 747388508}
-  - component: {fileID: 747388507}
-  m_Layer: 0
-  m_Name: CollisionSensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &747388506
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747388505}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1009637580}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &747388507
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747388505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42131422dd82a9246b85f20a7d4a8fee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerCollisionSensor
-  obstacleLayers:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!136 &747388508
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 747388505}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &783886930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,7 +1108,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7973000057210073714, guid: 14f23b0276618244aaab766750fccb86, type: 3}
   m_PrefabInstance: {fileID: 235135658}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1009637579}
+  m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03061b5044dc95d4e8c2b9587242692b, type: 3}
@@ -1254,53 +1161,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 517490318}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1009637579 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6746261289539769997, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-  m_PrefabInstance: {fileID: 235135658}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1009637580 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8507831349861981955, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-  m_PrefabInstance: {fileID: 235135658}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1009637581 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 7497919929512713473, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-  m_PrefabInstance: {fileID: 235135658}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1009637584
+--- !u!114 &1009637584 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 99098721475637470, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+  m_PrefabInstance: {fileID: 235135658}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1009637579}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b76bc82899a35764dae987f9e4ea25a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreSystem
-  playerRb: {fileID: 1009637581}
-  collisionSensor: {fileID: 747388507}
-  usePositionDeltaForSpeed: 1
-  speedSource: {fileID: 1009637580}
-  positionDeltaSpeedEpsilon: 0.15
-  resetScoreWhenIdle: 1
-  idleResetSeconds: 5
-  idleSpeedThreshold: 0.25
-  minSpeedToScore: 6
-  pointsPerSecondAtMinSpeed: 20
-  pointsPerSecondAtHighSpeed: 80
-  highSpeed: 25
-  combo: 1
-  comboMax: 10
-  comboBuildPerSecond: 0.2
-  comboDecayPerSecondWhenSlow: 0.35
-  bankDelayAfterLastScore: 2
-  chainScore: 0
-  totalScore: 0
-  collidedCooldown: 0.2
 --- !u!1 &1064765807
 GameObject:
   m_ObjectHideFlags: 0

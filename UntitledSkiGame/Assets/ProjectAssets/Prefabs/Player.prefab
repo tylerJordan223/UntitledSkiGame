@@ -407,11 +407,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
   TrackerSettings:
     BindingMode: 3
-    PositionDamping: {x: 1, y: 1, z: 1}
+    PositionDamping: {x: 1, y: 3, z: 1}
     AngularDampingMode: 0
     RotationDamping: {x: 0, y: 0, z: 0}
     QuaternionDamping: 1
-  FollowOffset: {x: -5, y: 2, z: 0}
+  FollowOffset: {x: -5, y: 3, z: 0}
 --- !u!114 &948908345013697834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +513,7 @@ GameObject:
   - component: {fileID: 7973000057210073714}
   - component: {fileID: 4050072961026693383}
   - component: {fileID: 3157547822039091470}
+  - component: {fileID: 99098721475637470}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -665,6 +666,38 @@ MonoBehaviour:
   chainScore: 0
   totalScore: 0
   collidedCooldown: 0.2
+--- !u!114 &99098721475637470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6746261289539769997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76bc82899a35764dae987f9e4ea25a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreSystem
+  playerRb: {fileID: 7497919929512713473}
+  collisionSensor: {fileID: 0}
+  usePositionDeltaForSpeed: 1
+  speedSource: {fileID: 8507831349861981955}
+  positionDeltaSpeedEpsilon: 0.15
+  resetScoreWhenIdle: 1
+  idleResetSeconds: 5
+  idleSpeedThreshold: 0.25
+  minSpeedToScore: 6
+  pointsPerSecondAtMinSpeed: 20
+  pointsPerSecondAtHighSpeed: 80
+  highSpeed: 25
+  combo: 1
+  comboMax: 10
+  comboBuildPerSecond: 0.2
+  comboDecayPerSecondWhenSlow: 0.35
+  bankDelayAfterLastScore: 2
+  chainScore: 0
+  totalScore: 0
+  collidedCooldown: 0.2
 --- !u!1 &8282418987821655958
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,7 +728,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8282418987821655958}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14804377, y: 0.3245303, z: -0.051506054, w: 0.932797}
+  m_LocalRotation: {x: -0.14804386, y: -0.32453033, z: 0.05150607, w: -0.932797}
   m_LocalPosition: {x: -2.3407593, y: 1.2279816, z: -2.9571228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
