@@ -41,6 +41,9 @@ public class PlayerMovement : MonoBehaviour
 
     public Transform orientation;
 
+    [Header("Animation:")]
+    public Animator anim;
+
     float horizontal_input;
     float vertical_input;
 
@@ -109,6 +112,16 @@ public class PlayerMovement : MonoBehaviour
     {
         //get the player input
         Vector2 movement = input.Unmounted.Move.ReadValue<Vector2>();
+
+        //code to alter the animation
+        if(movement != Vector2.zero)
+        {
+            anim.SetBool("running", true);
+        }
+        else
+        {
+            anim.SetBool("running", false);
+        }
 
         //assign movement
         horizontal_input = movement.x;

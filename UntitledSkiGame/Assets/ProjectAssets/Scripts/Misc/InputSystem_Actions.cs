@@ -1259,6 +1259,15 @@ namespace Global_Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""00737eb6-e135-4ef9-a424-de364df9733d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1314,6 +1323,17 @@ namespace Global_Input
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Brake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46323126-ee1f-4548-868c-4f44442d43aa"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1414,6 +1434,7 @@ namespace Global_Input
             m_Mounted_Push = m_Mounted.FindAction("Push", throwIfNotFound: true);
             m_Mounted_Rotate = m_Mounted.FindAction("Rotate", throwIfNotFound: true);
             m_Mounted_Brake = m_Mounted.FindAction("Brake", throwIfNotFound: true);
+            m_Mounted_Interact = m_Mounted.FindAction("Interact", throwIfNotFound: true);
         }
 
         ~@GlobalInput()
@@ -1975,6 +1996,7 @@ namespace Global_Input
         private readonly InputAction m_Mounted_Push;
         private readonly InputAction m_Mounted_Rotate;
         private readonly InputAction m_Mounted_Brake;
+        private readonly InputAction m_Mounted_Interact;
         /// <summary>
         /// Provides access to input actions defined in input action map "Mounted".
         /// </summary>
@@ -1998,6 +2020,10 @@ namespace Global_Input
             /// Provides access to the underlying input action "Mounted/Brake".
             /// </summary>
             public InputAction @Brake => m_Wrapper.m_Mounted_Brake;
+            /// <summary>
+            /// Provides access to the underlying input action "Mounted/Interact".
+            /// </summary>
+            public InputAction @Interact => m_Wrapper.m_Mounted_Interact;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -2033,6 +2059,9 @@ namespace Global_Input
                 @Brake.started += instance.OnBrake;
                 @Brake.performed += instance.OnBrake;
                 @Brake.canceled += instance.OnBrake;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
 
             /// <summary>
@@ -2053,6 +2082,9 @@ namespace Global_Input
                 @Brake.started -= instance.OnBrake;
                 @Brake.performed -= instance.OnBrake;
                 @Brake.canceled -= instance.OnBrake;
+                @Interact.started -= instance.OnInteract;
+                @Interact.performed -= instance.OnInteract;
+                @Interact.canceled -= instance.OnInteract;
             }
 
             /// <summary>
@@ -2343,6 +2375,13 @@ namespace Global_Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnBrake(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnInteract(InputAction.CallbackContext context);
         }
     }
 }
