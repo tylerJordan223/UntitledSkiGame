@@ -45,8 +45,8 @@ public class SkiMovement : MonoBehaviour
     public CapsuleCollider playerCollider;
 
     //saved values for calculation
-    private float slopeAngle = 180f; //flat ground at default
-    private int uphill;
+    public float slopeAngle = 180f; //flat ground at default
+    public int uphill;
     private Vector3 groundNormal; 
     private Rigidbody rb;
     

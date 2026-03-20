@@ -41,6 +41,7 @@ public class SkiCamera : MonoBehaviour
     {
         float rotation = input.Mounted.Rotate.ReadValue<float>() * 10;
 
+
         if(rotation != 0)
         {
             player.Rotate(0, rotation * rotation_speed * Time.deltaTime, 0);
@@ -48,10 +49,12 @@ public class SkiCamera : MonoBehaviour
             //handle ski rotation
             foreach(Transform ski in skis.transform.GetComponentsInChildren<Transform>())
             {
+                //Debug.Log("Local Rotation: " + ski.localRotation.y + "\nGlobal Rotation: " + ski.rotation.y);
+
                 if(rotation < 0)
                 {
                     //turning left
-                    if(ski.rotation.y > -0.20)
+                    if(ski.localRotation.y > -0.20)
                     {
                         ski.Rotate(0, rotation * rotation_speed * Time.deltaTime, 0f, Space.Self);
                     }
@@ -59,7 +62,7 @@ public class SkiCamera : MonoBehaviour
                 else 
                 {
                     //turning right
-                    if (ski.rotation.y < 0.20)
+                    if (ski.localRotation.y < 0.20)
                     {
                         ski.Rotate(0, rotation * rotation_speed * Time.deltaTime, 0f, Space.Self);
                     }
@@ -72,11 +75,14 @@ public class SkiCamera : MonoBehaviour
             foreach (Transform ski in skis.transform.GetComponentsInChildren<Transform>())
             {
                 //straighten out the kis by multiplying them by the negative of hteir current rotation
-                if (Mathf.Abs(ski.localRotation.y) > 0)
+                if (Mathf.Abs(ski.localRotation.y) >= 0.01)
                 {
-                    ski.Rotate(0, 15f * -Mathf.Sign(ski.rotation.y) * Time.deltaTime, 0, Space.Self);
+                    ski.Rotate(0, 25f * -Mathf.Sign(ski.localRotation.y) * Time.deltaTime, 0, Space.Self);
                 }
             }
         }
+
+        //set the ski z rotation to the slope angle
+        skis.transform.localRotation = Quaternion.Euler(0f, 0f, SkiMovement.Instance.slopeAngle * Mathf.Sign(SkiMovement.Instance.uphill));
     }
 }
