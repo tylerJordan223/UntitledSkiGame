@@ -17,27 +17,18 @@ public class TrickComboDetector : MonoBehaviour
         if (skiMovement == null) return;
         if (Keyboard.current == null) return;
 
-        // TEMP DEBUG: allow triggering even when grounded.
-        // if (skiMovement.grounded)
-        //     return;
+        bool canTriggerRampTrick = !skiMovement.grounded && skiMovement.canDoRampTricks;
 
-        // Placeholder combos
-        // Example mappings:
-        //  - Q = "SHIFTER"
-        //  - E = "GRAB"
-        //  - Space + A = "SPIN LEFT"
-        //  - Space + D = "SPIN RIGHT"
-
-        if (Keyboard.current.qKey.wasPressedThisFrame)
+        if (canTriggerRampTrick && Keyboard.current.qKey.wasPressedThisFrame)
             TriggerTrick("TRICK: SHIFTER (placeholder)");
 
-        if (Keyboard.current.eKey.wasPressedThisFrame)
+        if (canTriggerRampTrick && Keyboard.current.eKey.wasPressedThisFrame)
             TriggerTrick("TRICK: GRAB (placeholder)");
 
-        if (Keyboard.current.spaceKey.isPressed && Keyboard.current.aKey.wasPressedThisFrame)
+        if (canTriggerRampTrick && Keyboard.current.spaceKey.isPressed && Keyboard.current.aKey.wasPressedThisFrame)
             TriggerTrick("TRICK: SPIN LEFT (placeholder)");
 
-        if (Keyboard.current.spaceKey.isPressed && Keyboard.current.dKey.wasPressedThisFrame)
+        if (canTriggerRampTrick && Keyboard.current.spaceKey.isPressed && Keyboard.current.dKey.wasPressedThisFrame)
             TriggerTrick("TRICK: SPIN RIGHT (placeholder)");
 
         // Expire text

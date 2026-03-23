@@ -31,7 +31,7 @@ public class SkiMovement : MonoBehaviour
     public float ground_drag;
     public float slopeAcceleration;
     public float playerAcceleration = 0;
-    
+
     public Transform orientation;
 
     [Header("Grounding:")]
@@ -44,12 +44,16 @@ public class SkiMovement : MonoBehaviour
     public float maxSlopeAngle = 45;
     public CapsuleCollider playerCollider;
 
+    [Header("Ramp Trick Detection")]
+    public bool isOnRamp;
+    public bool canDoRampTricks;
+
     //saved values for calculation
     public float slopeAngle = 180f; //flat ground at default
     public int uphill;
-    private Vector3 groundNormal; 
+    private Vector3 groundNormal;
     private Rigidbody rb;
-    
+
     //movement values
     private Vector3 moveDirection;
     private float horizontal_input;
@@ -57,6 +61,10 @@ public class SkiMovement : MonoBehaviour
 
     //basic input
     private GlobalInput input;
+
+    // ramp tracking
+    private bool wasGroundedLastFrame;
+    private bool wasOnRampLastFrame;
 
     private void Start()
     {
@@ -72,11 +80,16 @@ public class SkiMovement : MonoBehaviour
         input.Mounted.Enable();
 
         //remove player velocity
-        if(rb)
+        if (rb)
         {
             rb.linearVelocity = Vector3.zero;
         }
         playerAcceleration = 0f;
+
+        wasGroundedLastFrame = grounded;
+        wasOnRampLastFrame = false;
+        isOnRamp = false;
+        canDoRampTricks = false;
     }
 
     private void OnDisable()
@@ -87,11 +100,30 @@ public class SkiMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        bool groundedBeforeCheck = grounded;
+        bool onRampBeforeCheck = isOnRamp;
+
         //only check for the groundedness if you are still grounded (this gets reset on collision
-        if(grounded)
+        if (grounded)
         {
             CheckGrounded();
         }
+
+        // if we just left the ground and we were on a ramp, allow trick window
+        if (groundedBeforeCheck && !grounded && onRampBeforeCheck)
+        {
+            canDoRampTricks = true;
+        }
+
+        // landing ends the ramp-air trick window
+        if (!groundedBeforeCheck && grounded)
+        {
+            canDoRampTricks = false;
+        }
+
+        wasGroundedLastFrame = grounded;
+        wasOnRampLastFrame = isOnRamp;
+
         //always move/apply the gravity
         MovePlayer();
         ApplyGravity();
@@ -100,7 +132,7 @@ public class SkiMovement : MonoBehaviour
     private void Update()
     {
         //handle the drag
-        if(grounded)
+        if (grounded)
         {
             rb.linearDamping = ground_drag;
         }
@@ -118,7 +150,7 @@ public class SkiMovement : MonoBehaviour
         Vector3 inputDirection = orientation.right;
 
         //important case for actually doing this
-        if(grounded && inputDirection.magnitude > 0.1f && playerAcceleration > 0f)
+        if (grounded && inputDirection.magnitude > 0.1f && playerAcceleration > 0f)
         {
             //project that movement onto the slope
             moveDirection = Vector3.ProjectOnPlane(inputDirection, groundNormal);
@@ -136,12 +168,13 @@ public class SkiMovement : MonoBehaviour
         }
 
         //alter acceleration based on angle, can happen when 0 (on angled slope)
-        if(grounded && !input.Mounted.Brake.IsPressed() && playerAcceleration != 0)
+        if (grounded && !input.Mounted.Brake.IsPressed() && playerAcceleration != 0)
         {
             //slop angle should be between 0 (flat ground) and 45 (max angle)
             //add to the player acceleration based on angle multiplied by the slope
             playerAcceleration -= uphill * ((slopeAngle / 45f) * 0.5f * Time.deltaTime);
-        }else if(grounded && input.Mounted.Brake.IsPressed())
+        }
+        else if (grounded && input.Mounted.Brake.IsPressed())
         {
             //this is braking, happens instead of thet slope speed up or slow down
             playerAcceleration -= 0.4f * Time.deltaTime;
@@ -159,14 +192,14 @@ public class SkiMovement : MonoBehaviour
     //applying gravity
     private void ApplyGravity()
     {
-        if(!grounded)
+        if (!grounded)
         {
             //normal gravity in air
             rb.AddForce(Vector3.down * 10f, ForceMode.Acceleration);
         }
         else
         {
-            if(slopeAngle > 1f)
+            if (slopeAngle > 1f)
             {
                 //apply force down the slope (downhill acceleration)
                 Vector3 slopeGravity = Vector3.ProjectOnPlane(Vector3.down, groundNormal) * slopeAcceleration;
@@ -193,10 +226,12 @@ public class SkiMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(rayStart, Vector3.down, out hit, maxGroundDistance, groundMask))
         {
+            isOnRamp = IsRampObject(hit.collider.transform);
+
             //get the slope angle
             slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
 
-            if(slopeAngle <= maxSlopeAngle)
+            if (slopeAngle <= maxSlopeAngle)
             {
                 //within range to movewith slope
                 grounded = true;
@@ -211,20 +246,50 @@ public class SkiMovement : MonoBehaviour
 
             //additionally find the uphill/downhill value
             Vector3 slopeUp = Vector3.ProjectOnPlane(Vector3.up, hit.normal).normalized;
-            uphill = (int)(1 * Mathf.Sign(Vector3.Dot(moveDirection.normalized, slopeUp)));
+
+            if (moveDirection.sqrMagnitude > 0.0001f)
+            {
+                uphill = (int)(1 * Mathf.Sign(Vector3.Dot(moveDirection.normalized, slopeUp)));
+            }
+            else
+            {
+                uphill = 0;
+            }
         }
         else
         {
             //not on the ground
             grounded = false;
             groundNormal = Vector3.up;
+            isOnRamp = false;
         }
+    }
+
+    private bool IsRampObject(Transform hitTransform)
+    {
+        if (hitTransform == null) return false;
+
+        Transform current = hitTransform;
+        while (current != null)
+        {
+            string objectName = current.name.ToLower();
+
+            if (objectName.Contains("ramp"))
+                return true;
+
+            if (objectName.Contains("ramps"))
+                return true;
+
+            current = current.parent;
+        }
+
+        return false;
     }
 
     private void Push(InputAction.CallbackContext context)
     {
         //only push if under a certain threshold
-        if(playerAcceleration < 0.7f)
+        if (playerAcceleration < 0.7f)
         {
             playerAcceleration += 0.2f;
         }
