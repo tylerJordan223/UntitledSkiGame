@@ -1660,6 +1660,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4429294199037209101, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+      propertyPath: TrackerSettings.PositionDamping.y
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4801667155927134326, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_Material
       value: 

@@ -1,6 +1,7 @@
 using Global_Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.UI.Image;
 
 public class SkiMovement : MonoBehaviour
 {
@@ -288,6 +289,18 @@ public class SkiMovement : MonoBehaviour
 
     private void Push(InputAction.CallbackContext context)
     {
+        RaycastHit hit;
+        //check if theres a wall straight ahead of the player, can't push if thats the case
+        if (Physics.Raycast(playerCollider.transform.position, playerCollider.transform.right, out hit, 1f))
+        {
+            if(hit.transform.CompareTag("Obstacle"))
+            {
+                //end the function here, no reason to gain acceleration when facing a wall
+                Debug.Log("WALL AHEAD");
+                return;
+            }
+        }
+
         //only push if under a certain threshold
         if (playerAcceleration < 0.7f)
         {
