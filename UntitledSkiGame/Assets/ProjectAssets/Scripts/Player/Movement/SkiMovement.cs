@@ -295,6 +295,14 @@ public class SkiMovement : MonoBehaviour
         }
     }
 
+    //function that runs when colliding with an obstacle
+    public void HitObstacle(Vector3 p)
+    {
+        //start by finding the angle between the player's forward and the vector from the player to the obstacle
+        float angle_between = Vector3.Dot(transform.forward.normalized, (p - transform.position).normalized);
+        //Debug.Log(angle_between);
+    }
+
     //COLLISION//
     private void OnCollisionStay(Collision collision)
     {
@@ -302,6 +310,20 @@ public class SkiMovement : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             grounded = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //if its an obstacle && has to check whether the script is on or not
+        if(collision.gameObject.CompareTag("Obstacle") && enabled)
+        {
+            foreach(ContactPoint p in collision.contacts)
+            {
+                Debug.Log(p.point);
+            }
+            //runs the function using the point of collision
+            HitObstacle(collision.contacts[0].point);
         }
     }
 }
