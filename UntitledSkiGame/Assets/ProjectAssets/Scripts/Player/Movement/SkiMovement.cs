@@ -33,6 +33,10 @@ public class SkiMovement : MonoBehaviour
     public float slopeAcceleration;
     public float playerAcceleration = 0;
 
+    //ski timer
+    private float ski_timer;
+    public float ski_cooldown;
+
     public Transform orientation;
 
     [Header("Grounding:")]
@@ -86,6 +90,9 @@ public class SkiMovement : MonoBehaviour
             rb.linearVelocity = Vector3.zero;
         }
         playerAcceleration = 0f;
+
+        //initialize timer
+        ski_timer = ski_cooldown;
 
         wasGroundedLastFrame = grounded;
         wasOnRampLastFrame = false;
@@ -142,6 +149,11 @@ public class SkiMovement : MonoBehaviour
             rb.linearDamping = 0f;
         }
 
+        //shrink timer
+        if(ski_timer > 0)
+        {
+            ski_timer -= Time.deltaTime;
+        }
     }
 
     //function used to move the player
@@ -296,15 +308,15 @@ public class SkiMovement : MonoBehaviour
             if(hit.transform.CompareTag("Obstacle"))
             {
                 //end the function here, no reason to gain acceleration when facing a wall
-                Debug.Log("WALL AHEAD");
                 return;
             }
         }
 
-        //only push if under a certain threshold
-        if (playerAcceleration < 0.7f)
+        //only push if under a certain threshold and timer is good
+        if (playerAcceleration < 0.7f && ski_timer <= 0)
         {
             playerAcceleration += 0.2f;
+            ski_timer = ski_cooldown;
         }
     }
 

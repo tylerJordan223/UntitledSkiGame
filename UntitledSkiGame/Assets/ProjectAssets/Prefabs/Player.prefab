@@ -317,7 +317,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
   TrackerSettings:
     BindingMode: 3
-    PositionDamping: {x: 1, y: 3, z: 1}
+    PositionDamping: {x: 1, y: 1.5, z: 1}
     AngularDampingMode: 0
     RotationDamping: {x: 0, y: 0, z: 0}
     QuaternionDamping: 1
@@ -394,7 +394,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6035163299059756839}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c634e69ffdc4662429cea1747afd45f2, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -517,6 +517,7 @@ MonoBehaviour:
   ground_drag: 5
   slopeAcceleration: 0
   playerAcceleration: 0
+  ski_cooldown: 0
   orientation: {fileID: 1054637279345006875}
   height: 2
   groundMask:
@@ -526,6 +527,8 @@ MonoBehaviour:
   maxGroundDistance: 0.5
   maxSlopeAngle: 45
   playerCollider: {fileID: 4801667155927134326}
+  isOnRamp: 0
+  canDoRampTricks: 0
   slopeAngle: 180
   uphill: 0
 --- !u!114 &4050072961026693383
