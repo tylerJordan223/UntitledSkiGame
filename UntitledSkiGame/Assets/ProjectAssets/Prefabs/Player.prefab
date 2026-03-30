@@ -238,6 +238,7 @@ GameObject:
   - component: {fileID: 4429294199037209101}
   - component: {fileID: 948908345013697834}
   - component: {fileID: 1636970307020011753}
+  - component: {fileID: 705156287177711948}
   m_Layer: 0
   m_Name: SkiCam
   m_TagString: Untagged
@@ -353,6 +354,45 @@ MonoBehaviour:
   rb: {fileID: 7497919929512713473}
   skis: {fileID: 8777967946035368549}
   rotation_speed: 5.2
+--- !u!114 &705156287177711948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5688402016092236254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe43d662878a7c43bcd44d43c9e2094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineDeoccluder
+  CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 1
+  IgnoreTag: Untagged
+  TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  MinimumDistanceFromTarget: 0.3
+  AvoidObstacles:
+    Enabled: 1
+    DistanceLimit: 0
+    MinimumOcclusionTime: 0
+    CameraRadius: 0.4
+    UseFollowTarget:
+      Enabled: 0
+      YOffset: 0
+    Strategy: 0
+    MaximumEffort: 4
+    SmoothingTime: 0
+    Damping: 0.4
+    DampingWhenOccluded: 0.2
+  ShotQualityEvaluation:
+    Enabled: 0
+    OptimalDistance: 10
+    NearLimit: 5
+    FarLimit: 30
+    MaxQualityBoost: 0.2
 --- !u!1 &6035163299059756839
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,7 +557,7 @@ MonoBehaviour:
   ground_drag: 5
   slopeAcceleration: 0
   playerAcceleration: 0
-  ski_cooldown: 0
+  ski_cooldown: 1
   orientation: {fileID: 1054637279345006875}
   height: 2
   groundMask:
@@ -719,6 +759,7 @@ GameObject:
   - component: {fileID: 802013063892461758}
   - component: {fileID: 8435144500876530531}
   - component: {fileID: 8241644367384438920}
+  - component: {fileID: 4137600163370418101}
   m_Layer: 0
   m_Name: PlayerCam
   m_TagString: Untagged
@@ -734,7 +775,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8282418987821655958}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.14804389, y: -0.32453033, z: 0.051506076, w: -0.932797}
+  m_LocalRotation: {x: -0.1480364, y: -0.3245077, z: 0.051499374, w: -0.93280643}
   m_LocalPosition: {x: -2.3407593, y: 1.2279816, z: -2.9571228}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -962,6 +1003,45 @@ MonoBehaviour:
   player_obj: {fileID: 1087728331783127546}
   rb: {fileID: 7497919929512713473}
   rotation_speed: 7
+--- !u!114 &4137600163370418101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8282418987821655958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbe43d662878a7c43bcd44d43c9e2094, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineDeoccluder
+  CollideAgainst:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  IgnoreTag: Untagged
+  TransparentLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  MinimumDistanceFromTarget: 0.3
+  AvoidObstacles:
+    Enabled: 1
+    DistanceLimit: 0
+    MinimumOcclusionTime: 0
+    CameraRadius: 0.4
+    UseFollowTarget:
+      Enabled: 0
+      YOffset: 0
+    Strategy: 0
+    MaximumEffort: 4
+    SmoothingTime: 0
+    Damping: 0.4
+    DampingWhenOccluded: 0.2
+  ShotQualityEvaluation:
+    Enabled: 0
+    OptimalDistance: 10
+    NearLimit: 5
+    FarLimit: 30
+    MaxQualityBoost: 0.2
 --- !u!1 &8777967946035368549
 GameObject:
   m_ObjectHideFlags: 0
