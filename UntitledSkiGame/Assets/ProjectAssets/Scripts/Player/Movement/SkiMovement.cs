@@ -296,11 +296,28 @@ public class SkiMovement : MonoBehaviour
     }
 
     //function that runs when colliding with an obstacle
-    public void HitObstacle(Vector3 p)
+    private void HitObstacle(Vector3 p)
     {
         //start by finding the angle between the player's forward and the vector from the player to the obstacle
-        float angle_between = Vector3.Dot(transform.forward.normalized, (p - transform.position).normalized);
-        //Debug.Log(angle_between);
+        float angle_between = Vector3.Angle(playerCollider.transform.right.normalized, (p - playerCollider.transform.position).normalized);
+
+        //need to be going fast enough / hit it at a hard enough angle
+        if (angle_between <= 60 && playerAcceleration > 0.3f)
+        {
+            //rotate to test, good enough !!!for now!!!
+            transform.Rotate(0, 180-angle_between, 0);
+
+            //decellerate depending on value
+            playerAcceleration /= (2 * (playerAcceleration + 1));
+        }
+        else
+        {
+            //straighten out against wall
+            if(angle_between <= 90 && playerAcceleration > 0.3f)
+            {
+                transform.Rotate(0, 90 - angle_between, 0);
+            }
+        }
     }
 
     //COLLISION//
@@ -318,10 +335,6 @@ public class SkiMovement : MonoBehaviour
         //if its an obstacle && has to check whether the script is on or not
         if(collision.gameObject.CompareTag("Obstacle") && enabled)
         {
-            foreach(ContactPoint p in collision.contacts)
-            {
-                Debug.Log(p.point);
-            }
             //runs the function using the point of collision
             HitObstacle(collision.contacts[0].point);
         }
