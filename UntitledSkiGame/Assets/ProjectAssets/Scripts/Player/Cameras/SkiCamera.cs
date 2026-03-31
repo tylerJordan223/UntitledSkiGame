@@ -46,7 +46,7 @@ public class SkiCamera : MonoBehaviour
         can_control = false;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(can_control)
         {

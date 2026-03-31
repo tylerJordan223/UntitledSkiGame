@@ -259,7 +259,7 @@ public class SkiMovement : MonoBehaviour
 
             //additionally find the uphill/downhill value
             Vector3 slopeUp = Vector3.ProjectOnPlane(Vector3.up, hit.normal).normalized;
-
+            
             if (moveDirection.sqrMagnitude > 0.0001f)
             {
                 uphill = (int)(1 * Mathf.Sign(Vector3.Dot(moveDirection.normalized, slopeUp)));
