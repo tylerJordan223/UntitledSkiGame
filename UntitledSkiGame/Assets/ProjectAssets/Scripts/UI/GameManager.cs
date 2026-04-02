@@ -1,17 +1,30 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using System.Collections.Generic;
 
-public class PauseMenu : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    [Header("UI")]
-    [SerializeField] private GameObject pauseMenuUI;
-    [SerializeField] private GameObject debugHUD;     
-    [SerializeField] private GameObject scoreCanvas;  
-
-    private bool isPaused;
+    //singleton information//
+    public static GameManager instance;
 
     private void Awake()
+    {
+        if(instance)
+        {
+            DestroyImmediate(this.gameObject);
+        }
+        instance = this;
+    }
+
+    [Header("UI")]
+    [SerializeField] public GameObject pauseMenuUI;
+    [SerializeField] public GameObject debugHUD;     
+    [SerializeField] public GameObject scoreCanvas;
+    [SerializeField] public GameObject NPC_Dialogue;
+
+    private bool isPaused;
+    private void Start()
     {
         if (pauseMenuUI != null) pauseMenuUI.SetActive(false);
     }
