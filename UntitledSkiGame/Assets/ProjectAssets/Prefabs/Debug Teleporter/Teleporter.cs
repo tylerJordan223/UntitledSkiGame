@@ -8,6 +8,11 @@ public class Teleporter : MonoBehaviour
     {
         Debug.Log("Collision detected with " + other.name);
         other.transform.parent.position = reciever.transform.position;
+        
+        if (SkiMovement.Instance != null)
+        {
+            SkiMovement.Instance.playerAcceleration = 0.0f;
+        }
 
     }
 }
