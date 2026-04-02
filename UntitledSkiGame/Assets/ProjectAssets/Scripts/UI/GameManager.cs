@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 
 public class GameManager : MonoBehaviour
 {
@@ -68,5 +69,30 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
+    }
+
+
+    //FUNCTIONS FOR NPC DIALOGUE//
+
+    public GameObject EnableNPCDialogue()
+    {
+        //disable the camera movement
+        Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.Time = 0;
+
+        //enable dialogue, disable player
+        NPC_Dialogue.SetActive(true);
+        SkiMovement.Instance.gameObject.SetActive(false);
+
+        //returns the canvas to be used by the script
+        return NPC_Dialogue;
+    }
+
+    public void DisableNPCDialogue()
+    {
+        NPC_Dialogue.SetActive(false);
+        SkiMovement.Instance.gameObject.SetActive(true);
+
+        //make it so camera blends again
+        Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.Time = 2f;
     }
 }
