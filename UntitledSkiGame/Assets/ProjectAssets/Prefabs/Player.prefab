@@ -464,7 +464,6 @@ GameObject:
   - component: {fileID: 7973000057210073714}
   - component: {fileID: 4050072961026693383}
   - component: {fileID: 3157547822039091470}
-  - component: {fileID: 99098721475637470}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -604,38 +603,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ScoreSystem
   playerRb: {fileID: 7497919929512713473}
   collisionSensor: {fileID: 3635387889003548826}
-  usePositionDeltaForSpeed: 1
-  speedSource: {fileID: 8507831349861981955}
-  positionDeltaSpeedEpsilon: 0.15
-  resetScoreWhenIdle: 1
-  idleResetSeconds: 5
-  idleSpeedThreshold: 0.25
-  minSpeedToScore: 6
-  pointsPerSecondAtMinSpeed: 20
-  pointsPerSecondAtHighSpeed: 80
-  highSpeed: 25
-  combo: 1
-  comboMax: 10
-  comboBuildPerSecond: 0.2
-  comboDecayPerSecondWhenSlow: 0.35
-  bankDelayAfterLastScore: 2
-  chainScore: 0
-  totalScore: 0
-  collidedCooldown: 0.2
---- !u!114 &99098721475637470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6746261289539769997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b76bc82899a35764dae987f9e4ea25a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScoreSystem
-  playerRb: {fileID: 7497919929512713473}
-  collisionSensor: {fileID: 0}
   usePositionDeltaForSpeed: 1
   speedSource: {fileID: 8507831349861981955}
   positionDeltaSpeedEpsilon: 0.15

@@ -32,6 +32,11 @@ public class NPCDialogueScript : MonoBehaviour
     private bool printing;
     private bool skip;
 
+    //quest details
+    [SerializeField] private string questTitle;
+    [SerializeField] private string questDescription;
+    [SerializeField] private float questBestTime;
+
     private void Start()
     {
         //disable the fake player initially
@@ -53,7 +58,6 @@ public class NPCDialogueScript : MonoBehaviour
         input.Mounted.Interact.Enable();
 
         input.Mounted.Push.performed += SkipCheck;
-        input.Mounted.Push.Enable();
     }
 
     private void OnDisable()
@@ -71,6 +75,7 @@ public class NPCDialogueScript : MonoBehaviour
             interact_alert.SetActive(false);
             cam.SetActive(true);
             can_interact = false;
+            input.Mounted.Push.Enable();
 
             //also returns canvas to be used after
             dialogue_text = GameManager.instance.EnableNPCDialogue();
@@ -82,6 +87,7 @@ public class NPCDialogueScript : MonoBehaviour
 
     private void EndDialogue()
     {
+        input.Mounted.Push.Disable();
         fake_player.SetActive(false);
         cam.SetActive(false);
         GameManager.instance.DisableNPCDialogue();
@@ -134,16 +140,16 @@ public class NPCDialogueScript : MonoBehaviour
         //function to move between dialogue bits
         if(!printing && dialogue_text.enabled)
         {
-            current_dialogue_line += 1;
-
             //if theres more to say
+            current_dialogue_line += 1;
             if(current_dialogue_line < dialogue_list.Count)
             {
                 StartCoroutine(PrintDialogue(dialogue_list[current_dialogue_line]));
             }
             else
             {
-                EndDialogue();
+                //function that builds the choice menu
+                GameManager.instance.OnEnableChoiceMenu(questTitle, questDescription, questBestTime, EndDialogue, EndDialogue);
             }
         }
     }

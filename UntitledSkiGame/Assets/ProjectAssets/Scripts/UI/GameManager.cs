@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using TMPro;
+using UnityEngine.UI;
+using System;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,8 +26,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject pauseMenuUI;
     [SerializeField] public GameObject debugHUD;     
     [SerializeField] public GameObject scoreCanvas;
+
+    [Header("Dialogue")]
     [SerializeField] public GameObject NPC_Dialogue;
     [SerializeField] public TextMeshProUGUI NPC_Dialogue_text;
+
+    [Header("Choice")]
+    [SerializeField] public GameObject choiceCanvas;
+    [SerializeField] public TextMeshProUGUI QuestTitle;
+    [SerializeField] public TextMeshProUGUI QuestDesc;
+    [SerializeField] public TextMeshProUGUI QuestTime;
+    [SerializeField] public Button AcceptButton;
+    [SerializeField] public Button DeclineButton;
 
     private bool isPaused;
     private void Start()
@@ -75,7 +88,6 @@ public class GameManager : MonoBehaviour
 
 
     //FUNCTIONS FOR NPC DIALOGUE//
-
     public TextMeshProUGUI EnableNPCDialogue()
     {
         //disable the camera movement
@@ -96,5 +108,36 @@ public class GameManager : MonoBehaviour
 
         //make it so camera blends again
         Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.Time = 2f;
+    }
+
+    //FUNCTIONS FOR CHOICE SYSTEM//
+
+    public void OnEnableChoiceMenu(string title, string description, float time, UnityAction acceptFunction, UnityAction declineFunction)
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
+        //assign all the values
+        QuestTitle.text = title;
+        QuestDesc.text = description;
+        QuestTime.text = $"Time: {time}";
+
+        //set the yes button
+        AcceptButton.onClick.AddListener(acceptFunction);
+        AcceptButton.onClick.AddListener(DisableChoiceMenu);
+
+        //always close dialogue with no button
+        DeclineButton.onClick.AddListener(declineFunction);
+        DeclineButton.onClick.AddListener(DisableChoiceMenu);
+
+        //enable the menu
+        choiceCanvas.SetActive(true);
+    }
+
+    public void DisableChoiceMenu()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        choiceCanvas.SetActive(false);
     }
 }
