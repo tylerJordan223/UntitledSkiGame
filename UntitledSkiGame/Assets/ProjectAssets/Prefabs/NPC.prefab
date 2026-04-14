@@ -309,6 +309,11 @@ MonoBehaviour:
   npc_body: {fileID: 7341811261092278693}
   cam: {fileID: 5646429972323060691}
   interact_alert: {fileID: 4105841033937064713}
+  talkSpeed: 0.1
+  dialogue_list:
+  - Hello
+  - This is dialogue
+  - "Wooooooooooow \U0001F60E"
 --- !u!65 &5485411963066194659
 BoxCollider:
   m_ObjectHideFlags: 0

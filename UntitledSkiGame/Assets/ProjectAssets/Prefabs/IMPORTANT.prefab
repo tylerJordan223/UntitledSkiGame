@@ -186,6 +186,7 @@ MonoBehaviour:
   debugHUD: {fileID: 5639203580854092391}
   scoreCanvas: {fileID: 5012489801814067289}
   NPC_Dialogue: {fileID: 1693442153180463161}
+  NPC_Dialogue_text: {fileID: 4586891837821366211}
 --- !u!1 &1693442153180463161
 GameObject:
   m_ObjectHideFlags: 0

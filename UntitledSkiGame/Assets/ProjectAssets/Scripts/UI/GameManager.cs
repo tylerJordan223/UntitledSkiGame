@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public GameObject debugHUD;     
     [SerializeField] public GameObject scoreCanvas;
     [SerializeField] public GameObject NPC_Dialogue;
+    [SerializeField] public TextMeshProUGUI NPC_Dialogue_text;
 
     private bool isPaused;
     private void Start()
@@ -74,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     //FUNCTIONS FOR NPC DIALOGUE//
 
-    public GameObject EnableNPCDialogue()
+    public TextMeshProUGUI EnableNPCDialogue()
     {
         //disable the camera movement
         Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.Time = 0;
@@ -84,7 +86,7 @@ public class GameManager : MonoBehaviour
         SkiMovement.Instance.gameObject.SetActive(false);
 
         //returns the canvas to be used by the script
-        return NPC_Dialogue;
+        return NPC_Dialogue_text;
     }
 
     public void DisableNPCDialogue()
