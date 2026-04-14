@@ -1144,9 +1144,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4429294199037209101, guid: 14f23b0276618244aaab766750fccb86, type: 3}
-      propertyPath: TrackerSettings.PositionDamping.y
-      value: 1.5
+    - target: {fileID: 705156287177711948, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+      propertyPath: IgnoreTag
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6746261289539769997, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_Name
