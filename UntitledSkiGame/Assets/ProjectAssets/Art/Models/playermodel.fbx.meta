@@ -83,107 +83,7 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton:
-    - name: playermodel(Clone)
-      parentName: 
-      position: {x: 0, y: 0, z: 0}
-      rotation: {x: 0, y: 0, z: 0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Cube
-      parentName: playermodel(Clone)
-      position: {x: -0, y: 10.606615, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 1, y: 1, z: 1}
-    - name: Armature
-      parentName: playermodel(Clone)
-      position: {x: -0, y: 0, z: 0}
-      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 1, y: 1, z: 1}
-    - name: root
-      parentName: Armature
-      position: {x: 0.07334994, y: 0, z: 0}
-      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
-      scale: {x: 1, y: 1, z: 1}
-    - name: pelvis
-      parentName: root
-      position: {x: -0.068259835, y: 4.741898, z: -0.011245386}
-      rotation: {x: 0, y: -0.00000011920929, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: torso
-      parentName: pelvis
-      position: {x: -0.000000002681109, y: 1.0716386, z: 4.4192916e-10}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: neck
-      parentName: torso
-      position: {x: -0.000000002681109, y: 2.6847754, z: 4.4192916e-10}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: head
-      parentName: neck
-      position: {x: -0.000000002681109, y: 0.37942505, z: 4.4192916e-10}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: LArm
-      parentName: torso
-      position: {x: -0.00000026657963, y: 2.2872362, z: -1.1068707}
-      rotation: {x: -0.502177, y: -0.49781352, z: -0.4978136, w: 0.50217694}
-      scale: {x: 1, y: 1, z: 1}
-    - name: LForearm
-      parentName: LArm
-      position: {x: -0, y: 2.2741072, z: 0}
-      rotation: {x: 0, y: -6.7762636e-21, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: LHannd
-      parentName: LForearm
-      position: {x: -0, y: 1.7088585, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RArm
-      parentName: torso
-      position: {x: 0.0000002930653, y: 2.2872362, z: 1.2404504}
-      rotation: {x: 0.70710003, y: -0.7071001, z: -0.0030854587, w: 0.003085399}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RForearm
-      parentName: RArm
-      position: {x: 0.0000000029837324, y: 2.2741075, z: -0.0000000035317953}
-      rotation: {x: 1.9670235e-22, y: -0.000000015893253, z: 1.4098522e-23, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RHand
-      parentName: RForearm
-      position: {x: 0.000000005153474, y: 1.7088585, z: 6.437517e-10}
-      rotation: {x: 1.9670235e-22, y: -0, z: 1.4098522e-23, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RLeg
-      parentName: pelvis
-      position: {x: -0.0050899237, y: 0.40715075, z: 0.7307958}
-      rotation: {x: 0.7071069, y: -0.00000005338507, z: 0.70710665, w: 0.000000053385087}
-      scale: {x: 1, y: 1, z: 1}
-    - name: LLowerLeg
-      parentName: RLeg
-      position: {x: -0.000000043266237, y: 2.7526894, z: -7.382681e-10}
-      rotation: {x: 0.000000021653237, y: -0.000000015893235, z: 0.000000021653241, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RFoot
-      parentName: LLowerLeg
-      position: {x: 0.000000029438256, y: 2.3669467, z: -0.0000000017887487}
-      rotation: {x: -0.7071068, y: -0.000000004216085, z: -0.0000002795737, w: 0.7071067}
-      scale: {x: 1, y: 1, z: 1}
-    - name: LLeg
-      parentName: pelvis
-      position: {x: -0.005090266, y: 0.40715075, z: -0.6736471}
-      rotation: {x: 0.7071069, y: 0.00000005338507, z: 0.70710665, w: -0.000000053385087}
-      scale: {x: 1, y: 1, z: 1}
-    - name: LLowerLeg.002
-      parentName: LLeg
-      position: {x: -0.000000012403561, y: 2.7526894, z: 8.483454e-10}
-      rotation: {x: -0.000000021653237, y: -0.000000015893235, z: -0.000000021653241, w: 1}
-      scale: {x: 1, y: 1, z: 1}
-    - name: LFoot
-      parentName: LLowerLeg.002
-      position: {x: 0.000000029438164, y: 2.3669467, z: 7.971721e-10}
-      rotation: {x: -0.7071068, y: -0.000000004216085, z: -0.0000002795737, w: 0.7071067}
-      scale: {x: 1, y: 1, z: 1}
+    skeleton: []
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -200,7 +100,7 @@ ModelImporter:
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
   importBlendShapeDeformPercent: 1
   remapMaterialsIfMaterialImportModeIsNone: 0
