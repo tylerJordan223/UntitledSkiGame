@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 50034785}
   - component: {fileID: 50034784}
   m_Layer: 3
-  m_Name: Cube
+  m_Name: Ramp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19907,6 +19907,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: -0.051499203
       objectReference: {fileID: 0}
+    - target: {fileID: 7973000057210073714, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+      propertyPath: isOnRamp
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8507831349861981955, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_LocalPosition.x
       value: 321.3
@@ -19952,6 +19956,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+--- !u!114 &289524627 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3157547822039091470, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+  m_PrefabInstance: {fileID: 289524625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b76bc82899a35764dae987f9e4ea25a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreSystem
+--- !u!114 &289524628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7973000057210073714, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+  m_PrefabInstance: {fileID: 289524625}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03061b5044dc95d4e8c2b9587242692b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SkiMovement
 --- !u!1 &317066437
 GameObject:
   m_ObjectHideFlags: 0
@@ -53419,6 +53445,94 @@ Mesh:
       - serializedVersion: 1
         m_IndexStart: 0
         m_IndexCount: 0
+--- !u!1001 &1795021683
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1599860607068631434, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: skiMovement
+      value: 
+      objectReference: {fileID: 289524628}
+    - target: {fileID: 3391786744237799947, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 268.9462
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391786744237799947, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 56.42076
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391786744237799947, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 48.98954
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391786744237799947, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391786744237799947, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391786744237799947, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391786744237799947, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391786744237799947, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391786744237799947, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391786744237799947, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6429596323584607876, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: skiMovement
+      value: 
+      objectReference: {fileID: 289524628}
+    - target: {fileID: 8121483327938721773, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: m_Name
+      value: DebugHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 8941288616314999734, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: scoreSystem
+      value: 
+      objectReference: {fileID: 289524627}
+    - target: {fileID: 8941288616314999734, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: skiMovement
+      value: 
+      objectReference: {fileID: 289524628}
+    - target: {fileID: 8941288616314999734, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+      propertyPath: airTimeTracker
+      value: 
+      objectReference: {fileID: 1795021684}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+--- !u!114 &1795021684 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6429596323584607876, guid: 2962115d23462b3439f2c6ec9180a3a3, type: 3}
+  m_PrefabInstance: {fileID: 1795021683}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ebd559eb5d58a040b53c34eac451dfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AirTimeTracker
 --- !u!1 &1820118900
 GameObject:
   m_ObjectHideFlags: 0
@@ -55638,3 +55752,4 @@ SceneRoots:
   - {fileID: 927450722}
   - {fileID: 1129931442}
   - {fileID: 132765264}
+  - {fileID: 1795021683}
