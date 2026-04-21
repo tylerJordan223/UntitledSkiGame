@@ -1,6 +1,7 @@
 using Global_Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.UI.Image;
 
 public class SkiMovement : MonoBehaviour
 {
@@ -31,7 +32,11 @@ public class SkiMovement : MonoBehaviour
     public float ground_drag;
     public float slopeAcceleration;
     public float playerAcceleration = 0;
-    
+
+    //ski timer
+    private float ski_timer;
+    public float ski_cooldown;
+
     public Transform orientation;
 
     [Header("Grounding:")]
@@ -44,12 +49,16 @@ public class SkiMovement : MonoBehaviour
     public float maxSlopeAngle = 45;
     public CapsuleCollider playerCollider;
 
+    [Header("Ramp Trick Detection")]
+    public bool isOnRamp;
+    public bool canDoRampTricks;
+
     //saved values for calculation
     public float slopeAngle = 180f; //flat ground at default
     public int uphill;
-    private Vector3 groundNormal; 
+    private Vector3 groundNormal;
     private Rigidbody rb;
-    
+
     //movement values
     private Vector3 moveDirection;
     private float horizontal_input;
@@ -57,6 +66,10 @@ public class SkiMovement : MonoBehaviour
 
     //basic input
     private GlobalInput input;
+
+    // ramp tracking
+    private bool wasGroundedLastFrame;
+    private bool wasOnRampLastFrame;
 
     private void Start()
     {
@@ -72,11 +85,19 @@ public class SkiMovement : MonoBehaviour
         input.Mounted.Enable();
 
         //remove player velocity
-        if(rb)
+        if (rb)
         {
             rb.linearVelocity = Vector3.zero;
         }
         playerAcceleration = 0f;
+
+        //initialize timer
+        ski_timer = ski_cooldown;
+
+        wasGroundedLastFrame = grounded;
+        wasOnRampLastFrame = false;
+        isOnRamp = false;
+        canDoRampTricks = false;
     }
 
     private void OnDisable()
@@ -87,11 +108,30 @@ public class SkiMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        bool groundedBeforeCheck = grounded;
+        bool onRampBeforeCheck = isOnRamp;
+
         //only check for the groundedness if you are still grounded (this gets reset on collision
-        if(grounded)
+        if (grounded)
         {
             CheckGrounded();
         }
+
+        // if we just left the ground and we were on a ramp, allow trick window
+        if (groundedBeforeCheck && !grounded && onRampBeforeCheck)
+        {
+            canDoRampTricks = true;
+        }
+
+        // landing ends the ramp-air trick window
+        if (!groundedBeforeCheck && grounded)
+        {
+            canDoRampTricks = false;
+        }
+
+        wasGroundedLastFrame = grounded;
+        wasOnRampLastFrame = isOnRamp;
+
         //always move/apply the gravity
         MovePlayer();
         ApplyGravity();
@@ -100,7 +140,7 @@ public class SkiMovement : MonoBehaviour
     private void Update()
     {
         //handle the drag
-        if(grounded)
+        if (grounded)
         {
             rb.linearDamping = ground_drag;
         }
@@ -109,6 +149,11 @@ public class SkiMovement : MonoBehaviour
             rb.linearDamping = 0f;
         }
 
+        //shrink timer
+        if(ski_timer > 0)
+        {
+            ski_timer -= Time.deltaTime;
+        }
     }
 
     //function used to move the player
@@ -118,7 +163,7 @@ public class SkiMovement : MonoBehaviour
         Vector3 inputDirection = orientation.right;
 
         //important case for actually doing this
-        if(grounded && inputDirection.magnitude > 0.1f && playerAcceleration > 0f)
+        if (grounded && inputDirection.magnitude > 0.1f && playerAcceleration > 0f)
         {
             //project that movement onto the slope
             moveDirection = Vector3.ProjectOnPlane(inputDirection, groundNormal);
@@ -136,12 +181,13 @@ public class SkiMovement : MonoBehaviour
         }
 
         //alter acceleration based on angle, can happen when 0 (on angled slope)
-        if(grounded && !input.Mounted.Brake.IsPressed() && playerAcceleration != 0)
+        if (grounded && !input.Mounted.Brake.IsPressed() && playerAcceleration != 0)
         {
             //slop angle should be between 0 (flat ground) and 45 (max angle)
             //add to the player acceleration based on angle multiplied by the slope
             playerAcceleration -= uphill * ((slopeAngle / 45f) * 0.5f * Time.deltaTime);
-        }else if(grounded && input.Mounted.Brake.IsPressed())
+        }
+        else if (grounded && input.Mounted.Brake.IsPressed())
         {
             //this is braking, happens instead of thet slope speed up or slow down
             playerAcceleration -= 0.4f * Time.deltaTime;
@@ -159,14 +205,14 @@ public class SkiMovement : MonoBehaviour
     //applying gravity
     private void ApplyGravity()
     {
-        if(!grounded)
+        if (!grounded)
         {
             //normal gravity in air
             rb.AddForce(Vector3.down * 10f, ForceMode.Acceleration);
         }
         else
         {
-            if(slopeAngle > 1f)
+            if (slopeAngle > 1f)
             {
                 //apply force down the slope (downhill acceleration)
                 Vector3 slopeGravity = Vector3.ProjectOnPlane(Vector3.down, groundNormal) * slopeAcceleration;
@@ -193,10 +239,12 @@ public class SkiMovement : MonoBehaviour
         RaycastHit hit;
         if (Physics.Raycast(rayStart, Vector3.down, out hit, maxGroundDistance, groundMask))
         {
+            isOnRamp = IsRampObject(hit.collider.transform);
+
             //get the slope angle
             slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
 
-            if(slopeAngle <= maxSlopeAngle)
+            if (slopeAngle <= maxSlopeAngle)
             {
                 //within range to movewith slope
                 grounded = true;
@@ -211,22 +259,89 @@ public class SkiMovement : MonoBehaviour
 
             //additionally find the uphill/downhill value
             Vector3 slopeUp = Vector3.ProjectOnPlane(Vector3.up, hit.normal).normalized;
-            uphill = (int)(1 * Mathf.Sign(Vector3.Dot(moveDirection.normalized, slopeUp)));
+            
+            if (moveDirection.sqrMagnitude > 0.0001f)
+            {
+                uphill = (int)(1 * Mathf.Sign(Vector3.Dot(moveDirection.normalized, slopeUp)));
+            }
+            else
+            {
+                uphill = 0;
+            }
         }
         else
         {
             //not on the ground
             grounded = false;
             groundNormal = Vector3.up;
+            isOnRamp = false;
         }
+    }
+
+    private bool IsRampObject(Transform hitTransform)
+    {
+        if (hitTransform == null) return false;
+
+        Transform current = hitTransform;
+        while (current != null)
+        {
+            string objectName = current.name.ToLower();
+
+            if (objectName.Contains("ramp"))
+                return true;
+
+            if (objectName.Contains("ramps"))
+                return true;
+
+            current = current.parent;
+        }
+
+        return false;
     }
 
     private void Push(InputAction.CallbackContext context)
     {
-        //only push if under a certain threshold
-        if(playerAcceleration < 0.7f)
+        RaycastHit hit;
+        //check if theres a wall straight ahead of the player, can't push if thats the case
+        if (Physics.Raycast(playerCollider.transform.position, playerCollider.transform.right, out hit, 1f))
+        {
+            if(hit.transform.CompareTag("Obstacle"))
+            {
+                //end the function here, no reason to gain acceleration when facing a wall
+                return;
+            }
+        }
+
+        //only push if under a certain threshold and timer is good
+        if (playerAcceleration < 0.7f && ski_timer <= 0)
         {
             playerAcceleration += 0.2f;
+            ski_timer = ski_cooldown;
+        }
+    }
+
+    //function that runs when colliding with an obstacle
+    private void HitObstacle(Vector3 p)
+    {
+        //start by finding the angle between the player's forward and the vector from the player to the obstacle
+        float angle_between = Vector3.Angle(playerCollider.transform.right.normalized, (p - playerCollider.transform.position).normalized);
+
+        //need to be going fast enough / hit it at a hard enough angle
+        if (angle_between <= 60 && playerAcceleration > 0.3f)
+        {
+            //rotate to test, good enough !!!for now!!!
+            transform.Rotate(0, 180-angle_between, 0);
+
+            //decellerate depending on value
+            playerAcceleration /= (2 * (playerAcceleration + 1));
+        }
+        else
+        {
+            //straighten out against wall
+            if(angle_between <= 90 && playerAcceleration > 0.3f)
+            {
+                transform.Rotate(0, 90 - angle_between, 0);
+            }
         }
     }
 
@@ -237,6 +352,16 @@ public class SkiMovement : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             grounded = true;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //if its an obstacle && has to check whether the script is on or not
+        if(collision.gameObject.CompareTag("Obstacle") && enabled)
+        {
+            //runs the function using the point of collision
+            HitObstacle(collision.contacts[0].point);
         }
     }
 }

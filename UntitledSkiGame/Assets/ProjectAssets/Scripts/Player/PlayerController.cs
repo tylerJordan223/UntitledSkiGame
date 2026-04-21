@@ -1,4 +1,5 @@
 using Global_Input;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,10 +24,11 @@ public class PlayerController : MonoBehaviour
 
     //boolean used to discern between movement types
     bool skiing;
-
+    bool swapping;
     private void Start()
     {
         skiing = false;
+        swapping = false;
     }
 
     private void OnEnable()
@@ -44,8 +46,18 @@ public class PlayerController : MonoBehaviour
     //function used to swap between types of movement
     private void SwapControls(InputAction.CallbackContext context)
     {
-        //swap to walking
-        if(skiing)
+        if(!swapping)
+        {
+            //run the swap coroutine
+            swapping = true;
+            StartCoroutine(PerformSwap());
+        }
+    }
+
+    private IEnumerator PerformSwap()
+    {
+        //swap to walking, only do it if you're slow enough
+        if (skiing && ski_movement.playerAcceleration < 0.1f)
         {
             //disable ski things
             ski_camera.SetActive(false);
@@ -54,11 +66,12 @@ public class PlayerController : MonoBehaviour
 
             //enable walking things
             walking_camera.SetActive(true);
+            yield return new WaitForSeconds(2.5f); //wait for everythign to catch up
             walking_movement.enabled = true;
 
             skiing = false;
         }
-        else //swap to skiing
+        else if(!skiing) //swap to skiing
         {
             //disable walking things
             walking_camera.SetActive(false);
@@ -67,6 +80,7 @@ public class PlayerController : MonoBehaviour
             //enable ski things
             ski_camera.SetActive(true);
             skis.SetActive(true);
+            yield return new WaitForSeconds(2.5f); //wait for everythign to catch up
             ski_movement.enabled = true;
 
             //make orientation forward based on player 
@@ -74,5 +88,8 @@ public class PlayerController : MonoBehaviour
 
             skiing = true;
         }
+
+        //make it so you can swap again
+        swapping = false;
     }
 }
