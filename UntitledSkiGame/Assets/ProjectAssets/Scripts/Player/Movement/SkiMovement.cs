@@ -59,6 +59,10 @@ public class SkiMovement : MonoBehaviour
     private Vector3 groundNormal;
     private Rigidbody rb;
 
+    //animation information
+    [Header("Animation:")]
+    public Animator anim;
+
     //movement values
     private Vector3 moveDirection;
     private float horizontal_input;
@@ -98,12 +102,18 @@ public class SkiMovement : MonoBehaviour
         wasOnRampLastFrame = false;
         isOnRamp = false;
         canDoRampTricks = false;
+
+        //start the animation
+        anim.SetBool("do_ski", true);
     }
 
     private void OnDisable()
     {
         //disable input
         input.Mounted.Disable();
+
+        //go back to regular walking
+        anim.SetBool("do_ski", false);
     }
 
     private void FixedUpdate()
@@ -311,6 +321,9 @@ public class SkiMovement : MonoBehaviour
                 return;
             }
         }
+
+        //do the ski push
+        anim.SetTrigger("push");
 
         //only push if under a certain threshold and timer is good
         if (playerAcceleration < 0.7f && ski_timer <= 0)
