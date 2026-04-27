@@ -94,7 +94,7 @@ public class SkiCamera : MonoBehaviour
             }
 
             //set the ski z rotation to the slope angle
-            skis.transform.localRotation = Quaternion.Euler(0f, 0f, SkiMovement.Instance.slopeAngle * Mathf.Sign(SkiMovement.Instance.uphill));
+            skis.transform.localRotation = Quaternion.Euler(0f, 0f, Mathf.Clamp(SkiMovement.Instance.slopeAngle, -30f, 30f) * Mathf.Sign(SkiMovement.Instance.uphill));
         }
     }
 

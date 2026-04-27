@@ -1,4 +1,5 @@
 using Global_Input;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.UI.Image;
@@ -102,18 +103,12 @@ public class SkiMovement : MonoBehaviour
         wasOnRampLastFrame = false;
         isOnRamp = false;
         canDoRampTricks = false;
-
-        //start the animation
-        anim.SetBool("do_ski", true);
     }
 
     private void OnDisable()
     {
         //disable input
         input.Mounted.Disable();
-
-        //go back to regular walking
-        anim.SetBool("do_ski", false);
     }
 
     private void FixedUpdate()
@@ -311,26 +306,39 @@ public class SkiMovement : MonoBehaviour
 
     private void Push(InputAction.CallbackContext context)
     {
+        //store the kit for checking
         RaycastHit hit;
+
         //check if theres a wall straight ahead of the player, can't push if thats the case
         if (Physics.Raycast(playerCollider.transform.position, playerCollider.transform.right, out hit, 1f))
         {
-            if(hit.transform.CompareTag("Obstacle"))
+            if (hit.transform.CompareTag("Obstacle"))
             {
                 //end the function here, no reason to gain acceleration when facing a wall
                 return;
             }
         }
 
-        //do the ski push
-        anim.SetTrigger("push");
-
         //only push if under a certain threshold and timer is good
         if (playerAcceleration < 0.7f && ski_timer <= 0)
         {
-            playerAcceleration += 0.2f;
-            ski_timer = ski_cooldown;
+            StartCoroutine(PerformPush());
         }
+    }
+
+
+    private IEnumerator PerformPush()
+    {
+        //set up the timer
+        ski_timer = ski_cooldown;
+
+        //animate the ski push
+        anim.SetTrigger("push");
+
+        //12 frames into the animation at 60fps
+        yield return new WaitForSeconds(0.5f);
+
+        playerAcceleration += 0.2f;
     }
 
     //function that runs when colliding with an obstacle

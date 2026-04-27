@@ -22,6 +22,9 @@ public class PlayerController : MonoBehaviour
     public GameObject orientation;
     public GameObject body;
 
+    [Header("Animator")]
+    [SerializeField] Animator anim;
+
     //boolean used to discern between movement types
     bool skiing;
     bool swapping;
@@ -50,6 +53,10 @@ public class PlayerController : MonoBehaviour
         {
             //run the swap coroutine
             swapping = true;
+
+            //swap the animation
+            anim.SetBool("do_ski", !anim.GetBool("do_ski"));
+
             StartCoroutine(PerformSwap());
         }
     }
