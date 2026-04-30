@@ -51,6 +51,16 @@ public class PlayerController : MonoBehaviour
     {
         if(!swapping)
         {
+            //check for ski speed check
+            if(skiing)
+            {
+                if(ski_movement.playerAcceleration >= 0.1f)
+                {
+                    //break and do not transition
+                    return;
+                }
+            }
+
             //run the swap coroutine
             swapping = true;
 
