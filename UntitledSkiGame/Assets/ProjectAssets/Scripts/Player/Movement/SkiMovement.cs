@@ -58,7 +58,7 @@ public class SkiMovement : MonoBehaviour
     public float slopeAngle = 180f; //flat ground at default
     public int uphill;
     private Vector3 groundNormal;
-    private Rigidbody rb;
+    public Rigidbody rb;
 
     //animation information
     [Header("Animation:")]
@@ -306,6 +306,7 @@ public class SkiMovement : MonoBehaviour
 
     private void Push(InputAction.CallbackContext context)
     {
+
         //store the kit for checking
         RaycastHit hit;
 

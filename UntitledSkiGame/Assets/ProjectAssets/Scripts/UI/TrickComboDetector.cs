@@ -109,6 +109,7 @@ public class TrickComboDetector : MonoBehaviour
             return;
         }
 
+
         if (currentAirTime >= minimumAirTimeToLandTrick)
         {
             if (scoreSystem != null)
@@ -125,8 +126,8 @@ public class TrickComboDetector : MonoBehaviour
             ShowMessage($"FAILED {GetResolvedTrickName(activeTrick)}");
             lastTrickLanded = false;
 
-            if (trickAnimator != null)
-                trickAnimator.SetTrigger(AnimTrickFail);
+            //trigger the failure
+            PlayerController.instance.TriggerRagdoll();
         }
 
         activeTrick = TrickType.None;
