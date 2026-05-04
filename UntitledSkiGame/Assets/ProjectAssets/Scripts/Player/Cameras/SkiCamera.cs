@@ -1,10 +1,6 @@
-using Autodesk.Fbx;
 using Global_Input;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Animations;
-using UnityEngine.Rendering.LookDev;
 
 public class SkiCamera : MonoBehaviour
 {

@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Global_Input;
 
 public class SkiLiftTeleport : MonoBehaviour
 {
@@ -23,7 +24,9 @@ public class SkiLiftTeleport : MonoBehaviour
 
     [Header("Interaction")]
     [SerializeField] private bool triggerAutomatically = true;
-    [SerializeField] private KeyCode interactKey = KeyCode.E;
+
+    //input
+    GlobalInput input;
 
     private bool playerInside;
     private bool isTeleporting;
@@ -44,9 +47,20 @@ public class SkiLiftTeleport : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        input = new GlobalInput();
+        input.Player.Interact.Enable();
+    }
+
+    private void OnDisable()
+    {
+        input.Player.Interact.Disable();
+    }
+
     private void Update()
     {
-        if (!triggerAutomatically && playerInside && !isTeleporting && Input.GetKeyDown(interactKey))
+        if (!triggerAutomatically && playerInside && !isTeleporting && input.Player.Interact.IsPressed() && SkiMovement.Instance.playerAcceleration <= 0f)
         {
             StartCoroutine(LiftSequence());
         }
