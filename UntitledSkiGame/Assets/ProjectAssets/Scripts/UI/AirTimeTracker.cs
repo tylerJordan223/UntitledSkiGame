@@ -35,7 +35,7 @@ public class AirTimeTracker : MonoBehaviour
         {
             lastAirTime = currentAirTime;
             if (lastAirTime > bestAirTime) bestAirTime = lastAirTime;
-            currentAirTime = 0f;
+            
         }
 
         wasGrounded = grounded;
