@@ -48,8 +48,8 @@ public class PlayerController : MonoBehaviour
     private Dictionary<Transform, RagdollTransform> initialTransforms = new Dictionary<Transform, RagdollTransform>();
 
     //boolean used to discern between movement types
-    bool skiing;
-    bool swapping;
+    public bool skiing;
+    public bool swapping;
     private void Start()
     {
         skiing = false;
