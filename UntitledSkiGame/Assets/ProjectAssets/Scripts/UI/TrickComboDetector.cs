@@ -48,7 +48,6 @@ public class TrickComboDetector : MonoBehaviour
     private static readonly int AnimTrickType = Animator.StringToHash("TrickType");
     private static readonly int AnimTrickStart = Animator.StringToHash("TrickStart");
     private static readonly int AnimTrickLand = Animator.StringToHash("TrickLand");
-    private static readonly int AnimTrickFail = Animator.StringToHash("TrickFail");
 
     private void Awake()
     {
@@ -177,11 +176,12 @@ public class TrickComboDetector : MonoBehaviour
         isPerformingTrick = true;
         lastTrickLanded = false;
 
-        ShowMessage($"{GetResolvedTrickName(trickType)}... LAND IT");
-        SyncAnimatorState();
-
         if (trickAnimator != null)
+        {
             trickAnimator.SetTrigger(AnimTrickStart);
+            ShowMessage($"{GetResolvedTrickName(trickType)}... LAND IT");
+            SyncAnimatorState();
+        }
     }
 
     private void SyncAnimatorState()

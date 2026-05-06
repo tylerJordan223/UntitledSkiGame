@@ -89,6 +89,10 @@ public class GameManager : MonoBehaviour
     {
         NPC_Dialogue.SetActive(false);
         SkiMovement.Instance.gameObject.SetActive(true);
+        if(PlayerController.instance.skiing)
+        {
+            SkiMovement.Instance.anim.SetBool("do_ski", true);
+        }
         Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.Time = 2f;
     }
 

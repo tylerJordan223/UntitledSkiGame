@@ -213,7 +213,7 @@ public class SkiMovement : MonoBehaviour
         if (!grounded)
         {
             //normal gravity in air
-            rb.AddForce(Vector3.down * 10f, ForceMode.Acceleration);
+            rb.AddForce(Vector3.down * 5f, ForceMode.Acceleration);
         }
         else
         {
