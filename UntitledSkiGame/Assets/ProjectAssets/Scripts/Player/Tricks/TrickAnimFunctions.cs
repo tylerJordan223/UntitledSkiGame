@@ -7,12 +7,10 @@ public class TrickAnimFunctions : MonoBehaviour
     public void CallEnableSkis()
     {
         PlayerController.instance.EnableSkis();
-        Debug.Log("ENABLED SKIS");
     }
 
     public void CallDisableSkis()
     {
         PlayerController.instance.DisableSkis();
-        Debug.Log("DISABLED SKIS");
     }
 }
