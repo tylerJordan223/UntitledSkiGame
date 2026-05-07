@@ -227,6 +227,18 @@ public class PlayerController : MonoBehaviour
             rb.isKinematic = false;
         }
     }
+
+
+    //disable and enable the skis visually for tricks
+    public void DisableSkis()
+    {
+        skis.SetActive(false);
+    }
+
+    public void EnableSkis()
+    {
+        skis.SetActive(true);
+    }
 }
 
 //object to help with ragdoll reset

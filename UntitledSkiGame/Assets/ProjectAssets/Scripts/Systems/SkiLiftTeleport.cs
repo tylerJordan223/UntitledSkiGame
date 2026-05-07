@@ -92,7 +92,6 @@ public class SkiLiftTeleport : MonoBehaviour
 
     private IEnumerator LiftSequence()
     {
-        Debug.Log("happening here");
         isTeleporting = true;
 
         if (fadeCanvasGroup != null)

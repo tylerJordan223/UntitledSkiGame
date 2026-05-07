@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static TrickComboDetector;
 
 public class TrickComboDetector : MonoBehaviour
 {
@@ -191,6 +192,9 @@ public class TrickComboDetector : MonoBehaviour
 
         trickAnimator.SetBool(AnimIsPerformingTrick, isPerformingTrick);
         trickAnimator.SetInteger(AnimTrickType, (int)activeTrick);
+        //update the minimum time//
+        minimumAirTimeToLandTrick = GetTrickLength(activeTrick);
+        Debug.Log(minimumAirTimeToLandTrick);
     }
 
     private void ShowMessage(string message)
@@ -238,5 +242,26 @@ public class TrickComboDetector : MonoBehaviour
     public bool IsPerformingTrick()
     {
         return isPerformingTrick;
+    }
+
+    //function to get the length of the called trick
+    private float GetTrickLength(TrickType trickType)
+    {
+        //get the hash string of the animation name
+        int trick_hash = Animator.StringToHash(trickType.ToString());
+
+        //if it doesn't have the trick hash then dont run this and return base value
+        if (!trickAnimator.HasState(0, trick_hash))
+            return 0.2f;
+
+        //just check all clips for one matching the same name
+        foreach (AnimationClip c in trickAnimator.runtimeAnimatorController.animationClips)
+        {
+            if (c.name == trickType.ToString())
+                return GetCurrentAirTime() + c.length;
+        }
+
+        //should never reach here but still important
+        return 0.2f;
     }
 }
