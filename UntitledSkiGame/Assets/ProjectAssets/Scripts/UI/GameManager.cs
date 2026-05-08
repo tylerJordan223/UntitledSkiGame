@@ -37,6 +37,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] public Button AcceptButton;
     [SerializeField] public Button DeclineButton;
 
+    [Header("SCORE")]
+    public float current_score;
+
     private bool isPaused;
 
     private void Update()
@@ -103,13 +106,27 @@ public class GameManager : MonoBehaviour
         Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.Time = 2f;
     }
 
-    public void OnEnableChoiceMenu(string title, string description, float time, UnityEvent acceptFunction, UnityEvent declineFunction)
+    public void OnEnableChoiceMenu(Quest q, UnityEvent acceptFunction, UnityEvent declineFunction)
     {
+        //reset the choices on the choice thing first
+        AcceptButton.onClick.RemoveAllListeners();
+        DeclineButton.onClick.RemoveAllListeners();
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        QuestTitle.text = title;
-        QuestDesc.text = description;
-        QuestTime.text = $"Time: {time}";
+        QuestTitle.text = q.title;
+        QuestDesc.text = q.description;
+        if(q.time)
+        {
+            QuestTime.text = $"Best Time: {q.best_time.ToString("F2")}";
+        }else if(q.trick)
+        {
+            QuestTime.text = $"Best Score: {q.best_score.ToString()}";
+        }
+        else if(q.find)
+        {
+            QuestTime.text = $"FIND IT";
+        }
         AcceptButton.onClick.AddListener(acceptFunction.Invoke);
         AcceptButton.onClick.AddListener(DisableChoiceMenu);
         DeclineButton.onClick.AddListener(declineFunction.Invoke);

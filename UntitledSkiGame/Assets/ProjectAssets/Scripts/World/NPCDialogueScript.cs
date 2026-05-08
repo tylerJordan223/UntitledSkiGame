@@ -26,6 +26,9 @@ public class NPCDialogueScript : MonoBehaviour
     private TextMeshProUGUI dialogue_text;
     public float talkSpeed;
 
+    //quest details
+    [SerializeField] Quest my_quest;
+
     //dialogue flags/details
     private List<string> current_dialogue;
     [SerializeField] private List<string> before_dialogue_list;
@@ -35,9 +38,6 @@ public class NPCDialogueScript : MonoBehaviour
     private int current_dialogue_line;
     private bool printing;
     private bool skip;
-
-    //quest details
-    [SerializeField] Quest my_quest;
 
     //functions for yes/no
     [SerializeField] public UnityEvent yes_action;
@@ -102,6 +102,12 @@ public class NPCDialogueScript : MonoBehaviour
             else
             {
                 current_dialogue = after_dialogue_list;
+            }
+
+            //check to see if there is already an active quest going on//
+            if (QuestSystem.instance.counter_active)
+            {
+                current_dialogue = during_dialogue_list;
             }
 
             current_dialogue_line = 0;
@@ -173,11 +179,18 @@ public class NPCDialogueScript : MonoBehaviour
             }
             else
             {
+                //check to see if there is already an active quest going on//
+                if (QuestSystem.instance.counter_active)
+                {
+                    EndDialogue();
+                    return;
+                }
+
                 //function that builds the choice menu
                 //will only pop up menu if not done or you're able to redo it
                 if( ( !my_quest.completed && !QuestSystem.instance.active_quests.Contains(my_quest) ) || ( my_quest.completed && my_quest.can_redo && !QuestSystem.instance.active_quests.Contains(my_quest)))
                 {
-                    GameManager.instance.OnEnableChoiceMenu(my_quest.title, my_quest.description, my_quest.best_time, yes_action, no_action);
+                    GameManager.instance.OnEnableChoiceMenu(my_quest, yes_action, no_action);
                 }
                 else
                 {

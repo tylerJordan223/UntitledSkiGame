@@ -150,6 +150,13 @@ public class ScoreSystem : MonoBehaviour
                 }
             }
         }
+
+        //if this needs to be done
+        if(GameManager.instance.current_score != totalScore + chainScore)
+        {
+            //add to currentscore
+            GameManager.instance.current_score = Mathf.Round(totalScore + chainScore);
+        }
     }
 
     private float GetSpeed(float dt)

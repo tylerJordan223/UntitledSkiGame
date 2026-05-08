@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46f56ab028dca5146ba22dedd7ecc88d, type: 3}
-  m_Name: TimeTrial
+  m_Name: FindTrial
   m_EditorClassIdentifier: Assembly-CSharp::Quest
-  title: The Time Trial
-  description: Test your speed and your might
+  title: The Find Trial
+  description: See if you can find it
   trick: 0
-  time: 1
-  find: 0
-  can_redo: 1
+  time: 0
+  find: 1
+  can_redo: 0
   completed: 0
-  best_time: 60
+  best_time: 5.493778
   goal_time: 60
   best_score: 0
   goal_score: 0
