@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement:")]
     public float speed;
     public float ground_drag;
+    private Vector2 last_movement;
 
     [Header("Grounding:")]
     public float height;
@@ -38,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxGroundDistance = 3f;
     public CapsuleCollider playerCollider;
     private float groundNormal = 180f; //flat ground at default
+    private bool on_ice;
 
     public Transform orientation;
 
@@ -66,6 +68,7 @@ public class PlayerMovement : MonoBehaviour
         pm.bounciness = 0f;
         pm.frictionCombine = PhysicsMaterialCombine.Maximum;
         playerCollider.material = pm;
+        on_ice = false;
     }
 
     private void OnEnable()
@@ -122,6 +125,15 @@ public class PlayerMovement : MonoBehaviour
         {
             anim.SetBool("running", false);
         }
+
+        //if on ice and stopping still move in that direction
+        if(on_ice && movement == Vector2.zero)
+        {
+            movement = last_movement - new Vector2(0.01f, 0.01f);
+        }
+
+        //update lastmovement
+        last_movement = movement;
 
         //assign movement
         horizontal_input = movement.x;
@@ -193,6 +205,15 @@ public class PlayerMovement : MonoBehaviour
         if (Physics.Raycast(transform.position, Vector3.down, out hit, checkDistance, groundMask))
         {
             grounded = true;
+
+            if(hit.collider.CompareTag("ice"))
+            {
+                on_ice = true;
+            }
+            else
+            {
+                on_ice = false;
+            }
         }
         else
         {

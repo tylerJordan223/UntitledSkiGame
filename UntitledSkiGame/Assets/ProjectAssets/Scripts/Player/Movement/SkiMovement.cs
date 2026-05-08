@@ -1,5 +1,6 @@
 using Global_Input;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.UI.Image;
@@ -59,6 +60,7 @@ public class SkiMovement : MonoBehaviour
     public int uphill;
     private Vector3 groundNormal;
     public Rigidbody rb;
+    private bool on_ice;
 
     //animation information
     [Header("Animation:")]
@@ -80,6 +82,7 @@ public class SkiMovement : MonoBehaviour
     {
         //initialize variables
         rb = GetComponent<Rigidbody>();
+        on_ice = false;
     }
 
     private void OnEnable()
@@ -201,7 +204,7 @@ public class SkiMovement : MonoBehaviour
         playerAcceleration = Mathf.Clamp(playerAcceleration, 0f, 1.0f);
 
         //if flat ground slow down anyways if on flat ground
-        if (playerAcceleration > 0f && slopeAngle == 0)
+        if (playerAcceleration > 0f && slopeAngle == 0 && !on_ice)
         {
             playerAcceleration -= 0.1f * Time.deltaTime;
         }
@@ -245,6 +248,16 @@ public class SkiMovement : MonoBehaviour
         if (Physics.Raycast(rayStart, Vector3.down, out hit, maxGroundDistance, groundMask))
         {
             isOnRamp = IsRampObject(hit.collider.transform);
+
+            //check to see if you're on ice
+            if (hit.collider.CompareTag("ice"))
+            {
+                on_ice = true;
+            }
+            else
+            {
+                on_ice = false;
+            }
 
             //get the slope angle
             slopeAngle = Vector3.Angle(hit.normal, Vector3.up);
