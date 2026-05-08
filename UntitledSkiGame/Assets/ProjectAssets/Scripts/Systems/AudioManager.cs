@@ -66,7 +66,6 @@ public class AudioManager : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(this.gameObject);
 
         //playing the normal first music
         music.clip = normalSong;

@@ -257,7 +257,7 @@ public class TrickComboDetector : MonoBehaviour
         foreach (AnimationClip c in trickAnimator.runtimeAnimatorController.animationClips)
         {
             if (c.name == trickType.ToString())
-                return GetCurrentAirTime() + c.length;
+                return GetCurrentAirTime() + (c.length / 2);
         }
 
         //should never reach here but still important

@@ -17,8 +17,8 @@ public class QuestSystem : MonoBehaviour
     [SerializeField] List<Quest> quests;
 
     //lists that contain the objects with reference to quests
-    private Dictionary<Quest, GameObject> endAreas = new Dictionary<Quest, GameObject>();
-    private Dictionary<Quest, GameObject> objectHolders = new Dictionary<Quest, GameObject>();
+    public Dictionary<Quest, GameObject> endAreas = new Dictionary<Quest, GameObject>();
+    public Dictionary<Quest, GameObject> objectHolders = new Dictionary<Quest, GameObject>();
 
     public List<Quest> active_quests;
 

@@ -9,14 +9,14 @@ public class QuestObject : MonoBehaviour
 
     private void Start()
     {
-        if(end_area)
-        {
-            QuestSystem.instance.addEndArea(myQuest, this.gameObject);
-        }
-
+        
         if (storage_area)
         {
             QuestSystem.instance.addObjectHolder(myQuest, this.gameObject);
+        }
+        if(end_area)
+        {
+            QuestSystem.instance.addEndArea(myQuest, this.gameObject);
         }
 
         //disable the object it should not be on right now

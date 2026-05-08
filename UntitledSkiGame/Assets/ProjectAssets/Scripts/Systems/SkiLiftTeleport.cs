@@ -102,14 +102,13 @@ public class SkiLiftTeleport : MonoBehaviour
         yield return StartCoroutine(FadeScreen(0f, 1f, fadeInDuration));
         SetMessageAlpha(1f);
 
-        yield return new WaitForSeconds(messageHoldDuration);
-
         TeleportPlayer();
+        yield return new WaitForSeconds(messageHoldDuration);
 
         yield return new WaitForSeconds(0.4f);
 
-        SetMessageAlpha(0f);
         yield return StartCoroutine(FadeScreen(1f, 0f, fadeOutDuration));
+        SetMessageAlpha(0f);
 
         if (fadeCanvasGroup != null)
         {
@@ -156,6 +155,9 @@ public class SkiLiftTeleport : MonoBehaviour
         {
             playerRb.linearVelocity = Vector3.zero;
             playerRb.angularVelocity = Vector3.zero;
+
+            playerRb.position = liftTopSpawnPoint.position;
+            playerRb.rotation = liftTopSpawnPoint.rotation;
         }
 
         player.position = liftTopSpawnPoint.position;
