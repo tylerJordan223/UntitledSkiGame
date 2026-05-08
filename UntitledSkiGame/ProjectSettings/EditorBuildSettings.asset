@@ -11,9 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/ProjectAssets/Scenes/OpenWorld.unity
     guid: bb39f8fd686f81e4eb632ecd0b36c5b8
-  - enabled: 1
-    path: Assets/ProjectAssets/Scenes/Debug/TerrainTesting.unity
-    guid: d940212686d3d074ba7e152d0e4d8927
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
