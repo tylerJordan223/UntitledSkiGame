@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
-using System.Collections.Generic;
 using Unity.Cinemachine;
 using TMPro;
 using UnityEngine.UI;
-using System;
 using UnityEngine.Events;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -89,23 +88,31 @@ public class GameManager : MonoBehaviour
     {
         NPC_Dialogue.SetActive(false);
         SkiMovement.Instance.gameObject.SetActive(true);
-        if(PlayerController.instance.skiing)
+        
+        if (PlayerController.instance.skiing)
         {
             SkiMovement.Instance.anim.SetBool("do_ski", true);
         }
+
+        StartCoroutine(WaitASingleFrameAndDoNothingElseExceptChangeCameraBlend());
+    }
+
+    private IEnumerator WaitASingleFrameAndDoNothingElseExceptChangeCameraBlend()
+    {
+        yield return null;
         Camera.main.GetComponent<CinemachineBrain>().DefaultBlend.Time = 2f;
     }
 
-    public void OnEnableChoiceMenu(string title, string description, float time, UnityAction acceptFunction, UnityAction declineFunction)
+    public void OnEnableChoiceMenu(string title, string description, float time, UnityEvent acceptFunction, UnityEvent declineFunction)
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         QuestTitle.text = title;
         QuestDesc.text = description;
         QuestTime.text = $"Time: {time}";
-        AcceptButton.onClick.AddListener(acceptFunction);
+        AcceptButton.onClick.AddListener(acceptFunction.Invoke);
         AcceptButton.onClick.AddListener(DisableChoiceMenu);
-        DeclineButton.onClick.AddListener(declineFunction);
+        DeclineButton.onClick.AddListener(declineFunction.Invoke);
         DeclineButton.onClick.AddListener(DisableChoiceMenu);
         choiceCanvas.SetActive(true);
     }

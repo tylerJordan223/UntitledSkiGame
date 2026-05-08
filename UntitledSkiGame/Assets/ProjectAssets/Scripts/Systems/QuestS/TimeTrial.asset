@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46f56ab028dca5146ba22dedd7ecc88d, type: 3}
   m_Name: TimeTrial
   m_EditorClassIdentifier: Assembly-CSharp::Quest
+  title: The Time Trial
+  description: Test your speed and your might
+  trick: 0
+  time: 1
+  find: 0
+  can_redo: 1
+  completed: 0
   best_time: 0
-  goal_time: 0
+  goal_time: 60
   best_score: 0
   goal_score: 0
-  quest_objects: {fileID: 0}
-  startLocation: {fileID: 0}
-  endLocation: {fileID: 0}

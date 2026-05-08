@@ -1,9 +1,9 @@
 using Global_Input;
-using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 public class NPCDialogueScript : MonoBehaviour
@@ -27,15 +27,21 @@ public class NPCDialogueScript : MonoBehaviour
     public float talkSpeed;
 
     //dialogue flags/details
-    [SerializeField] private List<string> dialogue_list;
+    private List<string> current_dialogue;
+    [SerializeField] private List<string> before_dialogue_list;
+    [SerializeField] private List<string> during_dialogue_list;
+    [SerializeField] private List<string> after_dialogue_list;
+
     private int current_dialogue_line;
     private bool printing;
     private bool skip;
 
     //quest details
-    [SerializeField] private string questTitle;
-    [SerializeField] private string questDescription;
-    [SerializeField] private float questBestTime;
+    [SerializeField] Quest my_quest;
+
+    //functions for yes/no
+    [SerializeField] public UnityEvent yes_action;
+    [SerializeField] public UnityEvent no_action;
 
     private void Start()
     {
@@ -80,16 +86,35 @@ public class NPCDialogueScript : MonoBehaviour
             //also returns canvas to be used after
             dialogue_text = GameManager.instance.EnableNPCDialogue();
 
+            Debug.Log($"Quest is active: {QuestSystem.instance.active_quests.Contains(my_quest)}");
+            Debug.Log($"Quest is completed: {my_quest.completed}");
+
+            //decide on which dialogue you're using
+            if(!my_quest.completed && !QuestSystem.instance.active_quests.Contains(my_quest))
+            {
+                //if incomplete and not started
+                current_dialogue = before_dialogue_list;
+            }else if(QuestSystem.instance.active_quests.Contains(my_quest))
+            {
+                //if started
+                current_dialogue = during_dialogue_list;
+            }
+            else
+            {
+                current_dialogue = after_dialogue_list;
+            }
+
             current_dialogue_line = 0;
-            StartCoroutine(PrintDialogue(dialogue_list[current_dialogue_line]));
+            StartCoroutine(PrintDialogue(current_dialogue[current_dialogue_line]));
         }
     }
 
-    private void EndDialogue()
+    public void EndDialogue()
     {
         input.Mounted.Push.Disable();
         fake_player.SetActive(false);
         cam.SetActive(false);
+
         GameManager.instance.DisableNPCDialogue();
     }
 
@@ -142,14 +167,23 @@ public class NPCDialogueScript : MonoBehaviour
         {
             //if theres more to say
             current_dialogue_line += 1;
-            if(current_dialogue_line < dialogue_list.Count)
+            if(current_dialogue_line < current_dialogue.Count)
             {
-                StartCoroutine(PrintDialogue(dialogue_list[current_dialogue_line]));
+                StartCoroutine(PrintDialogue(current_dialogue[current_dialogue_line]));
             }
             else
             {
                 //function that builds the choice menu
-                GameManager.instance.OnEnableChoiceMenu(questTitle, questDescription, questBestTime, EndDialogue, EndDialogue);
+                //will only pop up menu if not done or you're able to redo it
+                if( ( !my_quest.completed && !QuestSystem.instance.active_quests.Contains(my_quest) ) || ( my_quest.completed && my_quest.can_redo && !QuestSystem.instance.active_quests.Contains(my_quest)))
+                {
+                    GameManager.instance.OnEnableChoiceMenu(my_quest.title, my_quest.description, my_quest.best_time, yes_action, no_action);
+                }
+                else
+                {
+                    //just close dialogue
+                    EndDialogue();
+                }
             }
         }
     }
