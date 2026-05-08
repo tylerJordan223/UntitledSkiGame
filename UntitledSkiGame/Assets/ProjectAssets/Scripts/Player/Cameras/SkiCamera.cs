@@ -33,7 +33,22 @@ public class SkiCamera : MonoBehaviour
         input.Mounted.Enable();
 
         //transition to being able to move
-        StartCoroutine(TransitionPeriod());
+        //check to do only if need to transition
+        if (PlayerController.instance)
+        {
+            if (PlayerController.instance.ski_movement.enabled)
+            {
+                can_control = true;
+            }
+            else
+            {
+                StartCoroutine(TransitionPeriod());
+            }
+        }
+        else
+        {
+            StartCoroutine(TransitionPeriod());
+        }
     }
 
     private void OnDisable()

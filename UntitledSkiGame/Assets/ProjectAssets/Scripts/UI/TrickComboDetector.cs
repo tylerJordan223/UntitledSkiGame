@@ -194,7 +194,6 @@ public class TrickComboDetector : MonoBehaviour
         trickAnimator.SetInteger(AnimTrickType, (int)activeTrick);
         //update the minimum time//
         minimumAirTimeToLandTrick = GetTrickLength(activeTrick);
-        Debug.Log(minimumAirTimeToLandTrick);
     }
 
     private void ShowMessage(string message)

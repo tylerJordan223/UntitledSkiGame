@@ -31,7 +31,21 @@ public class FreeMoveCamera : MonoBehaviour
         input = new GlobalInput();
         input.Unmounted.Enable();
 
-        StartCoroutine(TransitionPeriod());
+        if(PlayerController.instance)
+        {
+            if (PlayerController.instance.walking_movement.enabled)
+            {
+                can_control = true;
+            }
+            else
+            {
+                StartCoroutine(TransitionPeriod());
+            }
+        }
+        else
+        {
+            StartCoroutine(TransitionPeriod());
+        }
     }
 
     private void OnDisable()
