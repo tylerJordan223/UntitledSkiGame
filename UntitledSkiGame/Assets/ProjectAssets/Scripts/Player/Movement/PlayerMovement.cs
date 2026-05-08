@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     float vertical_input;
 
     Vector3 moveDirection;
+    Vector3 lastDirection;
 
     public Rigidbody rb;
 
@@ -126,12 +127,6 @@ public class PlayerMovement : MonoBehaviour
             anim.SetBool("running", false);
         }
 
-        //if on ice and stopping still move in that direction
-        if(on_ice && movement == Vector2.zero)
-        {
-            movement = last_movement - new Vector2(0.01f, 0.01f);
-        }
-
         //update lastmovement
         last_movement = movement;
 
@@ -139,8 +134,19 @@ public class PlayerMovement : MonoBehaviour
         horizontal_input = movement.x;
         vertical_input = movement.y;
 
-        //adjust for orientation
-        moveDirection = orientation.forward * vertical_input + orientation.right * horizontal_input;
+
+        //ice physics check
+        if(on_ice && movement == Vector2.zero)
+        {
+            moveDirection = lastDirection;
+        }
+        else
+        {
+            //adjust for orientation
+            moveDirection = orientation.forward * vertical_input + orientation.right * horizontal_input;
+            lastDirection = moveDirection;
+        }
+
         Vector3 adjusted_movement = moveDirection.normalized * speed;
 
         //adjust for slope
