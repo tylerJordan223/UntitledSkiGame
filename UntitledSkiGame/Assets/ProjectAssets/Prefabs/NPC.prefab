@@ -310,13 +310,58 @@ MonoBehaviour:
   cam: {fileID: 5646429972323060691}
   interact_alert: {fileID: 4105841033937064713}
   talkSpeed: 0.1
-  dialogue_list:
-  - Hello
-  - This is dialogue
-  - "Wooooooooooow \U0001F60E"
-  questTitle: 
-  questDescription: 
-  questBestTime: 0
+  before_dialogue_list:
+  - Hey woah you haven't been fast yet
+  - You wanna be fast dont you?
+  - Go Be Fast!
+  during_dialogue_list:
+  - Why aren't you being fast
+  after_dialogue_list:
+  - You were fast....
+  - but do you wanna be fast again?
+  my_quest: {fileID: 11400000, guid: 559675a7ff070494e9f2ee4c5d91ec59, type: 2}
+  yes_action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 559675a7ff070494e9f2ee4c5d91ec59, type: 2}
+        m_TargetAssemblyTypeName: Quest, Assembly-CSharp
+        m_MethodName: StartQuest
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2579764180033240496}
+        m_TargetAssemblyTypeName: NPCDialogueScript, Assembly-CSharp
+        m_MethodName: EndDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  no_action:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2579764180033240496}
+        m_TargetAssemblyTypeName: NPCDialogueScript, Assembly-CSharp
+        m_MethodName: EndDialogue
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!65 &5485411963066194659
 BoxCollider:
   m_ObjectHideFlags: 0
