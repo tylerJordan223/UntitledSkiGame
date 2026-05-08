@@ -144,7 +144,7 @@ public class TrickComboDetector : MonoBehaviour
         if (!timingOk || !cooldownOk || trickUsedThisAir)
             return;
 
-        if (Keyboard.current.qKey.wasPressedThisFrame)
+        if (Keyboard.current.leftShiftKey.wasPressedThisFrame)
         {
             TriggerTrick(TrickType.Shifter, shifterPoints);
             return;

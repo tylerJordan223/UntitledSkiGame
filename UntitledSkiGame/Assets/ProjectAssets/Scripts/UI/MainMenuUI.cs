@@ -4,14 +4,18 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.Video;
 
 public class MainMenuUI : MonoBehaviour
 {
     [Header("References")]
     public CanvasGroup canvasGroup;
     public Button playButton;
+    public Button controlsButton;
     public Button quitButton;
     public string gameSceneName = "OpenWorld";
+    public VideoPlayer video;
+    public Image controls;
 
     [Header("Title (drag in a TextMeshPro text object)")]
     public TextMeshProUGUI titleText;
@@ -21,6 +25,8 @@ public class MainMenuUI : MonoBehaviour
     const float SNOW_SPEED_MIN = 80f;
     const float SNOW_SPEED_MAX = 200f;
     const float SNOW_DRIFT = 30f;
+
+    private bool video_done;
 
     List<RectTransform> _flakes = new();
     List<Vector2> _velocities = new();
@@ -35,10 +41,14 @@ public class MainMenuUI : MonoBehaviour
 
         canvasGroup.alpha = 0f;
         canvasGroup.interactable = false;
-        StartCoroutine(FadeIn());
+        //StartCoroutine(FadeIn());
+
+        video.loopPointReached += StartFade;
 
         playButton?.onClick.AddListener(() => StartCoroutine(FadeAndLoad()));
         quitButton?.onClick.AddListener(Quit);
+
+        controls.gameObject.SetActive(false);
     }
 
     void Update()
@@ -48,6 +58,22 @@ public class MainMenuUI : MonoBehaviour
         // Pulse title
         if (titleText != null)
             titleText.alpha = 0.75f + Mathf.Sin(Time.time * 1.5f) * 0.25f;
+    }
+
+    public void EnableControls()
+    {
+        controls.gameObject.SetActive(true);
+    }
+
+    public void DisableControls()
+    {
+        controls.gameObject.SetActive(false);
+    }
+
+    //function that starts the fade
+    private void StartFade(VideoPlayer vp)
+    {
+        StartCoroutine(FadeIn());
     }
 
     //  Snow
@@ -113,6 +139,7 @@ public class MainMenuUI : MonoBehaviour
     void SetupButtonHovers()
     {
         SetupHover(playButton);
+        SetupHover(controlsButton);
         SetupHover(quitButton);
     }
 
