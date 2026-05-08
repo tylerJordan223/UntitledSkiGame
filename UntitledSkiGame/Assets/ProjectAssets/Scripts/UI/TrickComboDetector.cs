@@ -101,14 +101,15 @@ public class TrickComboDetector : MonoBehaviour
 
     private void ResolveLanding(float currentAirTime)
     {
+        Debug.Log("RAN");
+        AudioManager.instance.PlaySingleSFX(AudioManager.instance.landing);
         if (activeTrick == TrickType.None)
-        {
+        { 
             isPerformingTrick = false;
             lastTrickLanded = false;
             SyncAnimatorState();
             return;
         }
-
 
         if (currentAirTime >= minimumAirTimeToLandTrick)
         {
@@ -117,6 +118,7 @@ public class TrickComboDetector : MonoBehaviour
 
             ShowMessage($"LANDED {GetResolvedTrickName(activeTrick)} +{Mathf.RoundToInt(activeTrickBasePoints)}");
             lastTrickLanded = true;
+            AudioManager.instance.PlaySingleSFX(AudioManager.instance.success);
 
             if (trickAnimator != null)
                 trickAnimator.SetTrigger(AnimTrickLand);
@@ -128,6 +130,7 @@ public class TrickComboDetector : MonoBehaviour
 
             //trigger the failure
             PlayerController.instance.TriggerRagdoll();
+            AudioManager.instance.PlaySingleSFX(AudioManager.instance.fail);
         }
 
         activeTrick = TrickType.None;
@@ -182,6 +185,8 @@ public class TrickComboDetector : MonoBehaviour
             trickAnimator.SetTrigger(AnimTrickStart);
             ShowMessage($"{GetResolvedTrickName(trickType)}... LAND IT");
             SyncAnimatorState();
+            //play sound for hitting trick
+            AudioManager.instance.PlaySingleSFX(AudioManager.instance.trick_hit);
         }
     }
 

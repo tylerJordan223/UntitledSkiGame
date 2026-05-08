@@ -93,14 +93,19 @@ public class SkiLiftTeleport : MonoBehaviour
     private IEnumerator LiftSequence()
     {
         isTeleporting = true;
+        
 
         if (fadeCanvasGroup != null)
         {
             fadeCanvasGroup.blocksRaycasts = true;
         }
 
+        //play sfx
+        AudioManager.instance.PlaySingleSFX(AudioManager.instance.helicopter);
+
         yield return StartCoroutine(FadeScreen(0f, 1f, fadeInDuration));
         SetMessageAlpha(1f);
+
 
         TeleportPlayer();
         yield return new WaitForSeconds(messageHoldDuration);

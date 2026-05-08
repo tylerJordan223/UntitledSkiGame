@@ -60,11 +60,17 @@ public class SkiMovement : MonoBehaviour
     public int uphill;
     private Vector3 groundNormal;
     public Rigidbody rb;
-    private bool on_ice;
+    public bool on_ice;
 
     //animation information
     [Header("Animation:")]
     public Animator anim;
+
+    [Header("AUDIO:")]
+    public AudioSource windGenerator;
+    public AudioSource ski_loop;
+    public AudioClip ski_snow;
+    public AudioClip ski_ice;
 
     //movement values
     private Vector3 moveDirection;
@@ -112,6 +118,10 @@ public class SkiMovement : MonoBehaviour
     {
         //disable input
         input.Mounted.Disable();
+
+        //mute the audio
+        windGenerator.volume = 0;
+        ski_loop.volume = 0;
     }
 
     private void FixedUpdate()
@@ -161,6 +171,60 @@ public class SkiMovement : MonoBehaviour
         if(ski_timer > 0)
         {
             ski_timer -= Time.deltaTime;
+        }
+
+        //start by shrinking the starting wind time
+        float wind_volume_goal = playerAcceleration - 0.5f;
+        wind_volume_goal *= AudioManager.instance.sfx_volume; //multiply by current maxVolume to lerp properly
+
+        //handle the audio//
+        if(windGenerator.volume != wind_volume_goal)
+        {
+            windGenerator.volume = Mathf.Lerp(windGenerator.volume, wind_volume_goal, Time.deltaTime * 10f);
+        }
+
+        //SKI SOUNDS//
+        //only do if grounded
+        if(grounded)
+        {
+            if(!ski_loop.isPlaying)
+            {
+                ski_loop.Play();
+            }
+
+            //swap between ice and snow
+            if(on_ice)
+            {
+                if(ski_loop.clip != ski_ice)
+                {
+                    ski_loop.Stop();
+                    ski_loop.clip = ski_ice;
+                    ski_loop.Play();
+                }
+            }
+            else
+            {
+                if(ski_loop.clip != ski_snow)
+                {
+                    ski_loop.Stop();
+                    ski_loop.clip = ski_snow;
+                    ski_loop.Play();
+                }
+            }
+
+            //mimic accerlation exactly
+            float ski_volume_goal = playerAcceleration;
+            ski_volume_goal *= AudioManager.instance.sfx_volume; //multiply by current maxVolume to lerp properly
+
+            //handle the audio//
+            if (ski_loop.volume != ski_volume_goal)
+            {
+                ski_loop.volume = Mathf.Lerp(ski_loop.volume, ski_volume_goal, Time.deltaTime * 10f);
+            }
+        }
+        else
+        {
+            ski_loop.Stop();
         }
     }
 

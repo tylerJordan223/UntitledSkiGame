@@ -13,4 +13,28 @@ public class TrickAnimFunctions : MonoBehaviour
     {
         PlayerController.instance.DisableSkis();
     }
+
+    public void PlaySTEP()
+    {
+        if(PlayerMovement.Instance.on_ice)
+        {
+            AudioManager.instance.PlaySFXPitched(AudioManager.instance.step_ice, Random.Range(0.5f, 1.5f));
+        }
+        else
+        {
+            AudioManager.instance.PlaySFXPitched(AudioManager.instance.step_snow, Random.Range(0.5f, 1.5f));
+        }
+    }
+
+    public void PlayPUSH()
+    {
+        if(SkiMovement.Instance.on_ice)
+        {
+            AudioManager.instance.PlaySFXPitched(AudioManager.instance.push_ice, Random.Range(0.5f, 1.5f));
+        }
+        else
+        {
+            AudioManager.instance.PlaySFXPitched(AudioManager.instance.push, Random.Range(0.5f, 1.5f));
+        }
+    }
 }

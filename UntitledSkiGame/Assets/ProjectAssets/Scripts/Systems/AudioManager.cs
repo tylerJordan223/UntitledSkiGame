@@ -14,41 +14,17 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource music;
 
     #region audios
-    [SerializeField] public AudioClip bossSong;
-    [SerializeField] public AudioClip normalSong;
-
-    //world events
-    [SerializeField] public AudioClip spawn;
-    [SerializeField] public AudioClip exit;
-    
-    //pickup
-    [SerializeField] public AudioClip coin;
-    [SerializeField] public AudioClip item;
-    [SerializeField] public AudioClip item_machine;
-
-    //gun
-    [SerializeField] public AudioClip charging;
-    [SerializeField] public AudioClip charged;
-    [SerializeField] public AudioClip blast;
-    [SerializeField] public AudioClip recharged;
-
-    //enemies
-    [SerializeField] public AudioClip e_damage;
-    [SerializeField] public AudioClip fly_drop;
-    [SerializeField] public AudioClip e_deathSound;
-
-    //player
-    [SerializeField] public AudioClip p_damage;
-
-    //boss sounds
-    [SerializeField] public AudioClip head_hit;
-    [SerializeField] public AudioClip hand_death;
-    [SerializeField] public AudioClip hand_smash;
-
-    //UI
-    [SerializeField] public AudioClip pause;
-    [SerializeField] public AudioClip unpause;
-    [SerializeField] public AudioClip buttonpress;
+    [Header("Audios")]
+    public AudioClip song;
+    public AudioClip helicopter;
+    public AudioClip trick_hit;
+    public AudioClip success;
+    public AudioClip fail;
+    public AudioClip step_snow;
+    public AudioClip step_ice;
+    public AudioClip push;
+    public AudioClip push_ice;
+    public AudioClip landing;
 
     #endregion audios
 
@@ -66,10 +42,12 @@ public class AudioManager : MonoBehaviour
             return;
         }
         instance = this;
+        DontDestroyOnLoad(this.gameObject);
 
         //playing the normal first music
-        music.clip = normalSong;
+        music.clip = song;
         ignore_volume = false;
+        music.volume = music_volume;
         music.loop = true;
         music.Play();
     }
@@ -101,7 +79,7 @@ public class AudioManager : MonoBehaviour
     {
         if(!music.isPlaying)
         {
-            music.clip = normalSong;
+            music.clip = song;
             music.Play();
         }
     }

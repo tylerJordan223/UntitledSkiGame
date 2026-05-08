@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     public float maxGroundDistance = 3f;
     public CapsuleCollider playerCollider;
     private float groundNormal = 180f; //flat ground at default
-    private bool on_ice;
+    public bool on_ice;
 
     public Transform orientation;
 
