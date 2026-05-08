@@ -88,7 +88,7 @@ public class TrickDebugHUD : MonoBehaviour
     // State line 
     string stateText = grounded ? "GROUNDED" : "IN AIR";
     GUIStyle stateStyle = grounded ? centeredStyleGreen : centeredStyleRed;
-    GUI.Label(new Rect(centerX - width / 2f, centerY, width, lineH), stateText, stateStyle);
+    //GUI.Label(new Rect(centerX - width / 2f, centerY, width, lineH), stateText, stateStyle);
 
     // Air time 
     string airText = "AIR: (no tracker)";
@@ -99,13 +99,13 @@ public class TrickDebugHUD : MonoBehaviour
         else
             airText = $"LAST AIR: {airTimeTracker.lastAirTime:0.00}s   BEST: {airTimeTracker.bestAirTime:0.00}s";
     }
-    GUI.Label(new Rect(centerX - width / 2f, centerY + lineH, width, lineH), airText, centeredStyle);
+   // GUI.Label(new Rect(centerX - width / 2f, centerY + lineH, width, lineH), airText, centeredStyle);
 
     // Keys line 
-    GUI.Label(new Rect(centerX - width / 2f, centerY + 2 * lineH, width, lineH), cachedKeys, centeredStyle);
+   // GUI.Label(new Rect(centerX - width / 2f, centerY + 2 * lineH, width, lineH), cachedKeys, centeredStyle);
 
     //  Actions line
-    GUI.Label(new Rect(centerX - width / 2f, centerY + 3 * lineH, width, lineH), cachedActions, centeredStyle);
+    //GUI.Label(new Rect(centerX - width / 2f, centerY + 3 * lineH, width, lineH), cachedActions, centeredStyle);
 
     // Current trick line 
     if (comboDetector != null && !string.IsNullOrEmpty(comboDetector.currentTrickName))

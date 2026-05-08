@@ -226,6 +226,22 @@ public class SkiMovement : MonoBehaviour
         {
             ski_loop.Stop();
         }
+
+        //pause on actual pause
+        if(Time.deltaTime == 0)
+        {
+            ski_loop.Stop();
+            windGenerator.Stop();
+        }
+        else
+        {
+            //check wind cause that sound never stops
+            if(!windGenerator.isPlaying)
+            {
+                ski_loop.Play();
+                windGenerator.Play();
+            }
+        }
     }
 
     //function used to move the player

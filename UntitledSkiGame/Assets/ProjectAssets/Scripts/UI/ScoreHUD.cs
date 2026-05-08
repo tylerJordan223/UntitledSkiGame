@@ -91,7 +91,8 @@ public class ScoreHUD : MonoBehaviour
 
         float chain = scoreSystem.chainScore;
         float total = scoreSystem.totalScore;
-        float displayed = showChain ? (total + chain) : total;
+        //float displayed = showChain ? (total + chain) : total;
+        float displayed = scoreSystem.chainScore;
 
         visualScore = Mathf.Lerp(visualScore, displayed, 1f - Mathf.Exp(-followSmooth * Time.deltaTime));
 

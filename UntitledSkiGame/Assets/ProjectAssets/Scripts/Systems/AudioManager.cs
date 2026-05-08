@@ -84,6 +84,17 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    //functiosn to pasue/unpasue sfx when actually pausing
+    public void PauseSFX()
+    {
+        sfx.Pause();
+    }
+
+    public void UnPauseSFX()
+    {
+        sfx.UnPause();
+    }
+
     //music fadeout transition
     private IEnumerator FadeMusic(AudioClip song)
     {

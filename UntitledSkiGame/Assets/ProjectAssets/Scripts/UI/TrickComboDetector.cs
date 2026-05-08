@@ -101,7 +101,6 @@ public class TrickComboDetector : MonoBehaviour
 
     private void ResolveLanding(float currentAirTime)
     {
-        Debug.Log("RAN");
         AudioManager.instance.PlaySingleSFX(AudioManager.instance.landing);
         if (activeTrick == TrickType.None)
         { 

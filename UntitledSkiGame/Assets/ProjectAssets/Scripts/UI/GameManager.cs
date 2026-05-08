@@ -46,8 +46,16 @@ public class GameManager : MonoBehaviour
     {
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            if (isPaused) Resume();
-            else Pause();
+            if (isPaused)
+            {
+                Resume();
+                AudioManager.instance.UnPauseSFX();
+            }
+            else 
+            {
+                Pause();
+                AudioManager.instance.PauseSFX();
+            }
         }
     }
 

@@ -108,7 +108,7 @@ public class ScoreSystem : MonoBehaviour
                 idleTimer += dt;
                 if (idleTimer >= idleResetSeconds)
                 {
-                    ResetAllScores();
+                    //ResetAllScores();
                     idleTimer = 0f; // prevent resetting every frame
                 }
             }

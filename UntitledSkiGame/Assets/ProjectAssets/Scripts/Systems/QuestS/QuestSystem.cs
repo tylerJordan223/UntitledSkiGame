@@ -107,9 +107,6 @@ public class QuestSystem : MonoBehaviour
                     //set the best Info
                     BestTitle.text = "BEST SCORE";
                     BestTime.text = q.best_score.ToString();
-
-                    //start score
-                    start_score = 0;
                 }
 
                 //no matter what enable the timer
