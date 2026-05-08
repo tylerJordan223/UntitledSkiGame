@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &971924
 Transform:
   m_ObjectHideFlags: 0
@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 33140456}
   m_Layer: 0
   m_Name: Cube (9)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -796,6 +796,63 @@ Transform:
   - {fileID: 41728209}
   m_Father: {fileID: 2048620945}
   m_LocalEulerAnglesHint: {x: 0, y: 35.788, z: 0}
+--- !u!1001 &83332570
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6113179565653289853, guid: 9153327b33baf32498e60cc377f7b0e5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -13.077747
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113179565653289853, guid: 9153327b33baf32498e60cc377f7b0e5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113179565653289853, guid: 9153327b33baf32498e60cc377f7b0e5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 25.708368
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113179565653289853, guid: 9153327b33baf32498e60cc377f7b0e5, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113179565653289853, guid: 9153327b33baf32498e60cc377f7b0e5, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113179565653289853, guid: 9153327b33baf32498e60cc377f7b0e5, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113179565653289853, guid: 9153327b33baf32498e60cc377f7b0e5, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113179565653289853, guid: 9153327b33baf32498e60cc377f7b0e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113179565653289853, guid: 9153327b33baf32498e60cc377f7b0e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6113179565653289853, guid: 9153327b33baf32498e60cc377f7b0e5, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6889857350342062535, guid: 9153327b33baf32498e60cc377f7b0e5, type: 3}
+      propertyPath: m_Name
+      value: tree_prefab
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9153327b33baf32498e60cc377f7b0e5, type: 3}
 --- !u!1 &109736198
 GameObject:
   m_ObjectHideFlags: 0
@@ -957,10 +1014,10 @@ Terrain:
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 8da73c5e87c144645badc2d4ea6e6293, type: 2}
   m_TreeDistance: 5000
-  m_TreeBillboardDistance: 50
+  m_TreeBillboardDistance: 380
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_DetailObjectDistance: 1000
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -1352,7 +1409,7 @@ GameObject:
   - component: {fileID: 168785941}
   m_Layer: 0
   m_Name: Cube (6)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2176,6 +2233,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -21.28272
       objectReference: {fileID: 0}
+    - target: {fileID: 4801667155927134326, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+      propertyPath: m_Radius
+      value: 0.11178315
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801667155927134326, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+      propertyPath: m_Center.x
+      value: 0.021858912
+      objectReference: {fileID: 0}
+    - target: {fileID: 4801667155927134326, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0010705788
+      objectReference: {fileID: 0}
     - target: {fileID: 5858043213767236500, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 1.3124084
@@ -2264,17 +2333,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 10.866251
       objectReference: {fileID: 0}
+    - target: {fileID: 8138484395764924933, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+      propertyPath: m_Radius
+      value: 0.21551628
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138484395764924933, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+      propertyPath: m_Center.x
+      value: -8.947985e-12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8138484395764924933, guid: 14f23b0276618244aaab766750fccb86, type: 3}
+      propertyPath: m_Center.z
+      value: 0.0032299361
+      objectReference: {fileID: 0}
     - target: {fileID: 8507831349861981955, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 392.74
+      value: -16.5
       objectReference: {fileID: 0}
     - target: {fileID: 8507831349861981955, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 193.77
+      value: 1.5241089
       objectReference: {fileID: 0}
     - target: {fileID: 8507831349861981955, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 318.71
+      value: 20.45
       objectReference: {fileID: 0}
     - target: {fileID: 8507831349861981955, guid: 14f23b0276618244aaab766750fccb86, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2465,7 +2546,7 @@ GameObject:
   - component: {fileID: 317066438}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8287,7 +8368,7 @@ GameObject:
   - component: {fileID: 410938804}
   m_Layer: 0
   m_Name: Cube (8)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11120,7 +11201,7 @@ GameObject:
   - component: {fileID: 748990724}
   m_Layer: 0
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12175,7 +12256,7 @@ GameObject:
   - component: {fileID: 943700896}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13545,9 +13626,9 @@ RectTransform:
   - {fileID: 1590213541}
   m_Father: {fileID: 4087738230420230347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -232.20001, y: -185}
   m_SizeDelta: {x: 360, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1112760639
@@ -14173,10 +14254,10 @@ Terrain:
   serializedVersion: 6
   m_TerrainData: {fileID: 15600000, guid: 120996d5deaa231419b0ca8960e53a34, type: 2}
   m_TreeDistance: 5000
-  m_TreeBillboardDistance: 50
+  m_TreeBillboardDistance: 400
   m_TreeCrossFadeLength: 5
   m_TreeMaximumFullLODCount: 50
-  m_DetailObjectDistance: 80
+  m_DetailObjectDistance: 1000
   m_DetailObjectDensity: 1
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
@@ -15237,7 +15318,7 @@ GameObject:
   - component: {fileID: 1366790079}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15551,7 +15632,7 @@ GameObject:
   - component: {fileID: 1450826251}
   m_Layer: 0
   m_Name: Cube (10)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17496,7 +17577,7 @@ GameObject:
   - component: {fileID: 1774217585}
   m_Layer: 0
   m_Name: Cube (7)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17797,7 +17878,7 @@ GameObject:
   - component: {fileID: 1820118901}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -18354,7 +18435,7 @@ GameObject:
   - component: {fileID: 1936754253}
   m_Layer: 0
   m_Name: Lodge
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19401,7 +19482,7 @@ GameObject:
   - component: {fileID: 2073983865}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20109,9 +20190,9 @@ RectTransform:
   - {fileID: 2008496297}
   m_Father: {fileID: 4087738230420230347}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: -232.20001, y: -135}
   m_SizeDelta: {x: 360, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2134198982
@@ -20279,7 +20360,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 644775638728048997, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 990432505726123027, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_fontColor.b
@@ -20339,19 +20420,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1515713832348862491, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1515713832348862491, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1515713832348862491, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -232.20001
       objectReference: {fileID: 0}
     - target: {fileID: 1515713832348862491, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -85
       objectReference: {fileID: 0}
     - target: {fileID: 1599922312764313570, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchorMax.x
@@ -20367,7 +20448,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1599922312764313570, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 1812255456753157772, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_Colors.m_HighlightedColor.b
@@ -20507,19 +20588,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6138931762118207263, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6138931762118207263, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6138931762118207263, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -232.20001
       objectReference: {fileID: 0}
     - target: {fileID: 6138931762118207263, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -235
       objectReference: {fileID: 0}
     - target: {fileID: 6753085900125562598, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchorMax.x
@@ -20527,7 +20608,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6753085900125562598, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6753085900125562598, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchorMin.x
@@ -20535,15 +20616,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6753085900125562598, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6753085900125562598, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -232.20001
       objectReference: {fileID: 0}
     - target: {fileID: 6753085900125562598, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -25
       objectReference: {fileID: 0}
     - target: {fileID: 7479832484122407694, guid: ba785d6ae9c991744ae4b08aa815ed90, type: 3}
       propertyPath: skiMovement
@@ -20656,3 +20737,4 @@ SceneRoots:
   - {fileID: 344419394}
   - {fileID: 1572490669969131080}
   - {fileID: 1378744914}
+  - {fileID: 83332570}
