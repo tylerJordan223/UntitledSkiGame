@@ -6,10 +6,13 @@ public class QuestObject : MonoBehaviour
 
     public bool end_area;
     public bool storage_area;
+    public bool delay_disappear;
 
     private void Start()
     {
-        
+
+        Debug.Log(QuestSystem.instance);
+
         if (storage_area)
         {
             QuestSystem.instance.addObjectHolder(myQuest, this.gameObject);

@@ -196,7 +196,20 @@ public class QuestSystem : MonoBehaviour
     }
     public void disableObjectHolder(Quest q)
     {
-        objectHolders[q].SetActive(false);
+        if (objectHolders[q].GetComponent<QuestObject>().delay_disappear)
+        {
+            StartCoroutine(DelayDisappear(objectHolders[q]));
+        }
+        else
+        {
+            objectHolders[q].SetActive(false);
+        }
+    }
+
+    private IEnumerator DelayDisappear(GameObject go)
+    {
+        yield return new WaitForSeconds(10f);
+        go.SetActive(false);
     }
 
 }
