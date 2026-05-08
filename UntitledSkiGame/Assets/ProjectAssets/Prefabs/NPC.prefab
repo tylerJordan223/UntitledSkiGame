@@ -310,6 +310,7 @@ MonoBehaviour:
   cam: {fileID: 5646429972323060691}
   interact_alert: {fileID: 4105841033937064713}
   talkSpeed: 0.1
+  my_quest: {fileID: 11400000, guid: 559675a7ff070494e9f2ee4c5d91ec59, type: 2}
   before_dialogue_list:
   - Hey woah you haven't been fast yet
   - You wanna be fast dont you?
@@ -319,7 +320,6 @@ MonoBehaviour:
   after_dialogue_list:
   - You were fast....
   - but do you wanna be fast again?
-  my_quest: {fileID: 11400000, guid: 559675a7ff070494e9f2ee4c5d91ec59, type: 2}
   yes_action:
     m_PersistentCalls:
       m_Calls:
@@ -543,6 +543,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NPC_body
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: ce0e2868eadfc4f44b11ac9b2cd75397, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4bda5e37b689e974f968a8a0a66f0506, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

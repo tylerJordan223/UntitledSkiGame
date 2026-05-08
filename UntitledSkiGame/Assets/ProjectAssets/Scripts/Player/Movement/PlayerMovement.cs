@@ -134,7 +134,6 @@ public class PlayerMovement : MonoBehaviour
         horizontal_input = movement.x;
         vertical_input = movement.y;
 
-
         //ice physics check
         if(on_ice && movement == Vector2.zero)
         {

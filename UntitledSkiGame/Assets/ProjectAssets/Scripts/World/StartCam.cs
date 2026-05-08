@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class StartCam : MonoBehaviour
@@ -7,6 +8,12 @@ public class StartCam : MonoBehaviour
     private void Awake()
     {
         this.gameObject.SetActive(true);
+        StartCoroutine(CamTrans());
+    }
+
+    private IEnumerator CamTrans()
+    {
+        yield return new WaitForSeconds(0.5f);
         this.gameObject.SetActive(false);
     }
 }

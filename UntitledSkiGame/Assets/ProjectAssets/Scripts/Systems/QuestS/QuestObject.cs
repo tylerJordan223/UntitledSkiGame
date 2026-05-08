@@ -11,8 +11,6 @@ public class QuestObject : MonoBehaviour
     private void Start()
     {
 
-        Debug.Log(QuestSystem.instance);
-
         if (storage_area)
         {
             QuestSystem.instance.addObjectHolder(myQuest, this.gameObject);

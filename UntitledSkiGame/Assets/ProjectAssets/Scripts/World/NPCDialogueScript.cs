@@ -86,9 +86,6 @@ public class NPCDialogueScript : MonoBehaviour
             //also returns canvas to be used after
             dialogue_text = GameManager.instance.EnableNPCDialogue();
 
-            Debug.Log($"Quest is active: {QuestSystem.instance.active_quests.Contains(my_quest)}");
-            Debug.Log($"Quest is completed: {my_quest.completed}");
-
             //decide on which dialogue you're using
             if(!my_quest.completed && !QuestSystem.instance.active_quests.Contains(my_quest))
             {
