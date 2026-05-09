@@ -142,6 +142,12 @@ public class QuestSystem : MonoBehaviour
         disableEndArea(q);
         disableObjectHolder(q);
 
+        //if its a find quest you auto complete
+        if(q.find)
+        {
+            q.completed = true;
+        }
+
         //handle the timer if its necessary
         if(counter_active)
         {
@@ -149,15 +155,17 @@ public class QuestSystem : MonoBehaviour
             counter_active = false;
 
             //update the best time if necessary
-            if(timer < q.best_time)
+            if(timer < q.best_time && q.time)
             {
                 q.best_time = timer;
+                q.completed = true;
             }
 
             //update best score if necessary
-            if((GameManager.instance.current_score - start_score) > q.best_score)
+            if((GameManager.instance.current_score - start_score) > q.best_score && q.trick)
             {
                 q.best_score = (GameManager.instance.current_score - start_score);
+                q.completed = true;
             }
 
             //set both to 0 again

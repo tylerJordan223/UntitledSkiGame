@@ -246,3 +246,11 @@ MonoBehaviour:
   music: {fileID: 1909780960513450523}
   song: {fileID: 8300000, guid: e14631a7e11e841428ffe2bee9341904, type: 3}
   helicopter: {fileID: 8300000, guid: 17992d409e577a84cbc9a44e2897f1ae, type: 3}
+  trick_hit: {fileID: 8300000, guid: 9f749af58b14e0f45a44eddc585c46af, type: 3}
+  success: {fileID: 8300000, guid: 28af0eb7c3bd95e4aad6e2247425d176, type: 3}
+  fail: {fileID: 8300000, guid: 64b1de6335973ba4a87f419cea4d7a0c, type: 3}
+  step_snow: {fileID: 8300000, guid: 45ce3cf97a634334ea9f1adbd917ab24, type: 3}
+  step_ice: {fileID: 8300000, guid: 78a88445ca8a0e543911b912834fe6d7, type: 3}
+  push: {fileID: 8300000, guid: 3e778b2753f57fe4ab616986b5db465b, type: 3}
+  push_ice: {fileID: 8300000, guid: 09063d60c1286774eba177cb7c9bc25d, type: 3}
+  landing: {fileID: 8300000, guid: f37bb747db5326348a5b65779c7c7d36, type: 3}

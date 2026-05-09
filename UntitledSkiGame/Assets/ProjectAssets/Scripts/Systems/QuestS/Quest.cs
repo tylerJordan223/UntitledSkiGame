@@ -44,6 +44,5 @@ public class Quest : ScriptableObject
     {
         QuestSystem.instance.disableEndArea(this);
         QuestSystem.instance.CompleteQuest(this);
-        completed = true;
     }
 }

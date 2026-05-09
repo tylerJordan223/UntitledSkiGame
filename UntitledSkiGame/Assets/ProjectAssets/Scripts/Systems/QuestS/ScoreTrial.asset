@@ -19,7 +19,7 @@ MonoBehaviour:
   find: 0
   can_redo: 1
   completed: 0
-  best_time: 5.493778
-  goal_time: 60
-  best_score: 0
+  best_time: 0
+  goal_time: 0
+  best_score: 10000
   goal_score: 0
