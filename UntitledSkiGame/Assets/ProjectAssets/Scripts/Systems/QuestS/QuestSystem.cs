@@ -43,10 +43,14 @@ public class QuestSystem : MonoBehaviour
         timer = 0;
         counter_active = false;
 
-        //add the unfinished quests to start
-        foreach(Quest q in quests)
+        //only do this in the editor//
+        if(Application.isEditor)
         {
-            q.completed = false;
+            //add the unfinished quests to start
+            foreach(Quest q in quests)
+            {
+                q.completed = false;
+            }
         }
     }
 
